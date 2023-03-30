@@ -43,5 +43,19 @@
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Pharma.Common\Pharma.Common.csproj">
+      <Project>{22434dd9-279b-4d99-a85c-62079a4ce48f}</Project>
+      <Name>Pharma.Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharma.Data\Pharma.Data.csproj">
+      <Project>{d10a8e97-f077-4250-b3af-cb7a3a88921c}</Project>
+      <Name>Pharma.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Pharma.Model\Pharma.Model.csproj">
+      <Project>{cba670e7-2a39-4be3-b4ab-e1f207ea7073}</Project>
+      <Name>Pharma.Model</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
