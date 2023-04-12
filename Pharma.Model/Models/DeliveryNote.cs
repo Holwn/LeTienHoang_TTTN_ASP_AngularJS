@@ -20,23 +20,19 @@ namespace Pharma.Model.Models
         public string Number { set; get; }
 
         public DateTime? Date { set; get; }
+        [Required]
         public int CustomerID { set; get; }
 
         [MaxLength(256)]
         public string Description { set; get; }
 
         public int? VAT { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal Amount { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal PaymentAmount { set; get; }
+        public decimal? Amount { set; get; }
+        public decimal? PaymentAmount { set; get; }
 
         [MaxLength(256)]
         public string PaymentMethod { set; get; }
-
-        public int StoreID { set; get; }
+        public int? StoreID { set; get; }
         public virtual IEnumerable<DeliveryNoteItem> DeliveryNoteItems { set; get; }
 
         [ForeignKey("StoreID")]

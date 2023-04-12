@@ -15,6 +15,10 @@ namespace Pharma.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
+        [Required]
+        [Column(TypeName = "varchar")]
+        [MaxLength(256)]
+        public string Alias { set; get; }
 
         [MaxLength(50)]
         public string Phone { set; get; }
@@ -34,8 +38,7 @@ namespace Pharma.Model.Models
         [Column(TypeName = "varchar")]
         [MaxLength(50)]
         public string TypeSub { set; get; }
-
-        public int StoreID { set; get; }
+        public int? StoreID { set; get; }
         public virtual IEnumerable<ReceiptNote> ReceiptNotes { set; get; }
         public virtual IEnumerable<DeliveryNote> DeliveryNotes { set; get; }
 

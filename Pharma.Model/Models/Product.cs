@@ -20,7 +20,7 @@ namespace Pharma.Model.Models
         [Column(TypeName = "varchar")]
         [MaxLength(256)]
         public string Alias { set; get; }
-
+        [Required]
         public int CategoryID { set; get; }
 
         [MaxLength(256)]
@@ -28,13 +28,9 @@ namespace Pharma.Model.Models
 
         [Column(TypeName = "xml")]
         public string MoreImage { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
         public decimal? BatchPrice { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
         public decimal? RetailPrice { set; get; }
-
+        [Required]
         public int UnitID { set; get; }
 
         [MaxLength(100)]
@@ -51,8 +47,7 @@ namespace Pharma.Model.Models
 
         [MaxLength(1024)]
         public string AddressManufacturer { set; get; }
-
-        public int StoreID { set; get; }
+        public int? StoreID { set; get; }
 
         [MaxLength(256)]
         public string MetaKeyword { set; get; }

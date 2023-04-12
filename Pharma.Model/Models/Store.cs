@@ -15,6 +15,10 @@ namespace Pharma.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
+        [Required]
+        [Column(TypeName = "varchar")]
+        [MaxLength(256)]
+        public string Alias { set; get; }
 
         [MaxLength(50)]
         public string Phone { set; get; }
@@ -33,7 +37,7 @@ namespace Pharma.Model.Models
 
         public int? RefStoreID { set; get; }
         public int? OwnerID { set; get; }
-
+        [Required]
         public int RoleID { set; get; }
         public virtual IEnumerable<Product> Products { set; get; }
         public virtual IEnumerable<Unit> Units { set; get; }

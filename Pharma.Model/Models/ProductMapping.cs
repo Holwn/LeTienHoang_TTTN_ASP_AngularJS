@@ -12,14 +12,10 @@ namespace Pharma.Model.Models
         public int ID { set; get; }
 
         public int ProductID { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal BatchInPrice { set; get; }
+        public decimal? BatchInPrice { set; get; }
 
         public DateTime? BatchInDate { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal RetailInPrice { set; get; }
+        public decimal? RetailInPrice { set; get; }
 
         public DateTime? RetailInDate { set; get; }
 
@@ -28,7 +24,7 @@ namespace Pharma.Model.Models
 
         public DateTime? ExpiredDate { set; get; }
         public int? Quantity { set; get; }
-        public int UnitID { set; get; }
+        public int? UnitID { set; get; }
 
         [ForeignKey("UnitID")]
         public virtual Unit Unit { set; get; }

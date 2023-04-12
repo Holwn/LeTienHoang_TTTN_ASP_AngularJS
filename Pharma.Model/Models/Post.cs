@@ -20,7 +20,7 @@ namespace Pharma.Model.Models
         [Column(TypeName = "varchar")]
         [MaxLength(256)]
         public string Alias { set; get; }
-
+        [Required]
         public int CategoryID { set; get; }
 
         [MaxLength(256)]

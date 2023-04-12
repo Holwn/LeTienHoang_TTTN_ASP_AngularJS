@@ -19,6 +19,7 @@ namespace Pharma.Model.Models
         public string URL { set; get; }
 
         public int? DisplayOrder { set; get; }
+        [Required]
         public int GroupID { set; get; }
 
         [MaxLength(10)]

@@ -14,18 +14,12 @@ namespace Pharma.Model.Models
         [Key]
         [Column(Order = 2)]
         public int ProductID { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal BatchPrice { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal RetailPrice { set; get; }
+        public decimal? BatchPrice { set; get; }
+        public decimal? RetailPrice { set; get; }
 
         public int? Quantity { set; get; }
         public int? VAT { set; get; }
-
-        [Column(TypeName = "decimal(18, 2)")]
-        public decimal Discount { set; get; }
+        public decimal? Discount { set; get; }
 
         [MaxLength(256)]
         public string BatchNumber { set; get; }

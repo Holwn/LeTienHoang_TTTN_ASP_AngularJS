@@ -14,8 +14,7 @@ namespace Pharma.Model.Models
         [Required]
         [MaxLength(256)]
         public string Name { set; get; }
-
-        public int StoreID { set; get; }
+        public int? StoreID { set; get; }
         public int? ParentID { set; get; }
         public int? Contain { set; get; }
         public bool Status { set; get; }
