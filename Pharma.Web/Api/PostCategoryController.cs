@@ -1,10 +1,14 @@
-﻿using Pharma.Model.Models;
+﻿using AutoMapper;
+using Pharma.Model.Models;
 using Pharma.Service;
 using Pharma.Web.Infrastructure.Core;
+using Pharma.Web.Models;
 using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using Pharma.Web.Infrastructure.Extensions;
+using Pharma.Web.Mappings;
 
 namespace Pharma.Web.Api
 {
@@ -12,35 +16,28 @@ namespace Pharma.Web.Api
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;
-        public PostCategoryController(IErrorService errorService,IPostCategoryService postCategoryService) : base(errorService)
+        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService) : base(errorService)
         {
             this._postCategoryService = postCategoryService;
         }
         [Route("getall")]
-        public HttpResponseMessage Get(HttpRequestMessage requestMessage, PostCategory postCategory)
+        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
         {
             return CreateHttpReponse(requestMessage, () =>
             {
-                HttpResponseMessage responseMessage = null;
-                if (ModelState.IsValid)
-                {
-                    requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
-                }
-                else
-                {
-                    var listCategory = _postCategoryService.GetAll();
+                var listCategory = _postCategoryService.GetAll();
+                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<PostCategoryViewModel>>(listCategory);
+                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
 
-                    responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listCategory);
-                }
                 return responseMessage;
             });
         }
-        public HttpResponseMessage Post(HttpRequestMessage requestMessage,PostCategory postCategory)
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
         {
             return CreateHttpReponse(requestMessage, () =>
              {
                  HttpResponseMessage responseMessage = null;
-                 if(ModelState.IsValid)
+                 if (ModelState.IsValid)
                  {
                      requestMessage.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
                  }
