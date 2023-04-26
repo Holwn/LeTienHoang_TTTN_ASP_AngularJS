@@ -32,7 +32,8 @@ namespace Pharma.Web.Api
                 return responseMessage;
             });
         }
-        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategory postCategory)
+        [Route("add")]
+        public HttpResponseMessage Post(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpReponse(requestMessage, () =>
              {
@@ -43,7 +44,10 @@ namespace Pharma.Web.Api
                  }
                  else
                  {
-                     var category = _postCategoryService.Add(postCategory);
+                     PostCategory newPostCategory = new PostCategory();
+                     newPostCategory.UpdatePostCategory(postCategoryVm);
+
+                     var category = _postCategoryService.Add(newPostCategory);
                      _postCategoryService.Save();
 
                      responseMessage = requestMessage.CreateResponse(HttpStatusCode.Created, category);
@@ -51,7 +55,8 @@ namespace Pharma.Web.Api
                  return responseMessage;
              });
         }
-        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategory postCategory)
+        [Route("update")]
+        public HttpResponseMessage Put(HttpRequestMessage requestMessage, PostCategoryViewModel postCategoryVm)
         {
             return CreateHttpReponse(requestMessage, () =>
             {
@@ -62,7 +67,10 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    _postCategoryService.Update(postCategory);
+                    var postCategoryDb = _postCategoryService.GetById(postCategoryVm.ID);
+                    postCategoryDb.UpdatePostCategory(postCategoryVm);
+
+                    _postCategoryService.Update(postCategoryDb);
                     _postCategoryService.Save();
 
                     responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK);
