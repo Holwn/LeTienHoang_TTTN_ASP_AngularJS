@@ -1,4 +1,5 @@
-﻿using Pharma.Model.Models;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using Pharma.Model.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Pharma.Data
 {
-    public class PharmaDbContext : DbContext
+    public class PharmaDbContext : IdentityDbContext<ApplicationUser>
     {
         public PharmaDbContext() : base("PharmaConnection")
         {
@@ -41,8 +42,14 @@ namespace Pharma.Data
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
 
+        public static PharmaDbContext Create()
+        {
+            return new PharmaDbContext();
+        }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i =>new { i.UserId, i.RoleId });
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
         }
     }
 }
