@@ -19,17 +19,12 @@
       "destination": "Assets/admin/libs/bootstrap/"
     },
     {
-      "library": "jQuery-slimScroll@1.3.8",
-      "destination": "Assets/admin/libs/slimCroll/jQuery-slimScroll/"
+      "library": "font-awesome@6.4.0",
+      "destination": "Assets/admin/libs/fontawesome/font-awesome/"
     },
     {
-      "library": "fastclick@1.0.6",
-      "destination": "Assets/admin/libs/fast-click/fastclick/"
+      "library": "toastr.js@2.1.4",
+      "destination": "Assets/admin/libs/toastr/toastr.js/"
     }
-  ,
-{
-  "library": "font-awesome@6.4.0",
-  "destination": "Assets/admin/libs/fontawesome/font-awesome/"
-}
-]
+  ]
 }

@@ -199,6 +199,7 @@
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
     <Compile Include="Api\PostCategoryController.cs" />
+    <Compile Include="Api\ProductCategoryController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\IdentityConfig.cs" />
@@ -212,6 +213,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Core\ApiControllerBase.cs" />
+    <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
     <Compile Include="Models\DeliveryNoteItemViewModel.cs" />
@@ -243,7 +245,17 @@
     <Content Include="app\components\products\productEditView.html" />
     <Content Include="app\components\products\productListController.js" />
     <Content Include="app\components\products\productListView.html" />
+    <Content Include="app\components\product_categories\productCategories.module.js" />
+    <Content Include="app\components\product_categories\productCategoryAddController.js" />
+    <Content Include="app\components\product_categories\productCategoryAddView.html" />
+    <Content Include="app\components\product_categories\productCategoryListController.js" />
+    <Content Include="app\components\product_categories\productCategoryListView.html" />
+    <Content Include="app\shared\directives\pagerDirective.html" />
+    <Content Include="app\shared\directives\pagerDirective.js" />
+    <Content Include="app\shared\filters\statusFilter.js" />
     <Content Include="app\shared\modules\pharma.common.js" />
+    <Content Include="app\shared\services\apiService.js" />
+    <Content Include="app\shared\services\notificationService.js" />
     <Content Include="Assets\admin\css\adminlte.css" />
     <Content Include="Assets\admin\css\adminlte.min.css" />
     <Content Include="Assets\admin\css\alt\adminlte.components.css" />
@@ -331,8 +343,6 @@
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.min.js" />
-    <Content Include="Assets\admin\libs\fast-click\fastclick\fastclick.js" />
-    <Content Include="Assets\admin\libs\fast-click\fastclick\fastclick.min.js" />
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\css\all.css" />
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\css\all.min.css" />
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\css\brands.css" />
@@ -372,8 +382,9 @@
     <Content Include="Assets\admin\libs\jquery\jquery.min.js" />
     <Content Include="Assets\admin\libs\jquery\jquery.slim.js" />
     <Content Include="Assets\admin\libs\jquery\jquery.slim.min.js" />
-    <Content Include="Assets\admin\libs\slimCroll\jQuery-slimScroll\jquery.slimscroll.js" />
-    <Content Include="Assets\admin\libs\slimCroll\jQuery-slimScroll\jquery.slimscroll.min.js" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js\toastr.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js\toastr.min.css" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js\toastr.min.js" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -385,12 +396,10 @@
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="app\components\product_categories\" />
     <Folder Include="app\components\roles\" />
     <Folder Include="app\components\users\" />
     <Folder Include="app\shared\footer\" />
     <Folder Include="app\shared\navigation\" />
-    <Folder Include="app\shared\services\" />
     <Folder Include="Assets\client\" />
   </ItemGroup>
   <ItemGroup>
@@ -541,6 +550,7 @@
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Assets\admin\libs\fontawesome\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Assets\admin\libs\toastr\toastr.js\toastr.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>

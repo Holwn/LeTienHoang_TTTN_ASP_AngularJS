@@ -1,7 +1,12 @@
 ﻿/// <reference path="../assets/admin/libs/angularjs/angular.js" />
 
 (function () {
-    angular.module('pharma', ['pharma.products', 'pharma.common']).config(config);
+    angular.module('pharma',
+        [
+            'pharma.product_categories',
+            'pharma.products',
+            'pharma.common'
+        ]).config(config);
 
     config.$inject = ['$stateProvider', '$urlRouterProvider'];
 

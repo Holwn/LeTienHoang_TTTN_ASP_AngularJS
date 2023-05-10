@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link href="~/Assets/admin/libs/fontawesome/font-awesome/css/all.min.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/toastr/toastr.js/toastr.css" rel="stylesheet" />
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Assets/admin/css/adminlte.min.css">
 </head>
@@ -199,25 +200,20 @@
                             </a>
                             <ul class="nav nav-treeview">
                                 <li class="nav-item">
+                                    <a ui-sref="product_categories" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Danh mục sản phẩm</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
                                     <a ui-sref="products" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
-                                        <p>Products</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a ui-sref="product_add" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Add Product</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="../../index3.html" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Dashboard v3</p>
+                                        <p>Sản phẩm</p>
                                     </a>
                                 </li>
                             </ul>
                         </li>
+
                         <li class="nav-item">
                             <a href="../widgets.html" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
@@ -856,11 +852,22 @@
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angularjs/angular.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/angular-ui-router.js"></script>
+    <script src="~/Assets/admin/libs/toastr/toastr.js/toastr.min.js"></script>
+
     <script src="~/app/shared/modules/pharma.common.js"></script>
+    <script src="~/app/shared/filters/statusFilter.js"></script>
+    <script src="~/app/shared/services/apiService.js"></script>
+    <script src="~/app/shared/directives/pagerDirective.js"></script>
+    <script src="~/app/shared/services/notificationService.js"></script>
+
+    <script src="~/app/components/product_categories/productCategories.module.js"></script>
     <script src="~/app/components/products/products.module.js"></script>
     <script src="~/app/app.js"></script>
+    <script src="~/app/components/home/homeController.js"></script>
+    <script src="~/app/components/product_categories/productCategoryListController.js"></script>
+    <script src="~/app/components/product_categories/productCategoryAddController.js"></script>
     <script src="~/app/components/products/productAddController.js"></script>
     <script src="~/app/components/products/productListController.js"></script>
-    <script src="~/app/components/home/homeController.js"></script>
+
 </body>
 </html>
