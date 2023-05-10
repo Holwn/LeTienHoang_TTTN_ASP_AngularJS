@@ -9,9 +9,9 @@ namespace Pharma.Web.Models
     public class ProductCategoryViewModel
     {
         public int ID { set; get; }
-        [Required]
+        [Required(ErrorMessage ="Yêu cầu nhập tên danh mục")]
         public string Name { set; get; }
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập tiêu đề SEO")]
         public string Alias { set; get; }
         public string Description { set; get; }
         public int? ParentID { set; get; }
@@ -24,7 +24,7 @@ namespace Pharma.Web.Models
         public int? CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }
         public int? UpdatedBy { set; get; }
-        [Required]
+        [Required(ErrorMessage = "Yêu cầu nhập trạng thái")]
         public bool Status { set; get; }
         public virtual IEnumerable<ProductViewModel> Products { set; get; }
     }

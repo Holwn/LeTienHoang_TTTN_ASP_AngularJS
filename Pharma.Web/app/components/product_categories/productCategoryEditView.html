@@ -3,14 +3,14 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Thêm mới danh mục</h1>
+                <h1>Cập nhật danh mục: {{productCategory.Name}}</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
                     <li class="breadcrumb-item">Sản phẩm</li>
                     <li class="breadcrumb-item"><a ui-sref="product_categories">Danh mục</a></li>
-                    <li class="breadcrumb-item active">Thêm mới</li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
         </div>
@@ -22,19 +22,19 @@
     <!-- Horizontal Form -->
     <div class="card card-default">
         <div class="card-header">
-            <h3 class="card-title">Thêm mới</h3>
+            <h3 class="card-title">{{productCategory.Name}}</h3>
         </div>
         <!-- /.card-header -->
         <!-- form start -->
-        <form class="form-horizontal" novalidate name="frmAddProductCategory" role="form" ng-submit="AddProductCategory()">
+        <form class="form-horizontal" novalidate name="frmUpdateProductCategory" role="form" ng-submit="UpdateProductCategory()">
             <div class="card-body">
 
                 <div class="form-group row">
                     <label for="name" class="col-sm-2 col-form-label">Tên danh mục</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="productCategory.Name">
-                        <span ng-show="frmAddProductCategory.name.$invalid && !frmAddProductCategory.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tên danh mục</span>
-                        <span ng-show="frmAddProductCategory.name.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>
+                        <input type="text" class="form-control" ng-maxlength="256" required ng-change="GetSeoTitle()" name="name" ng-model="productCategory.Name">
+                        <span ng-show="frmUpdateProductCategory.name.$invalid && !frmUpdateProductCategory.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tên danh mục</span>
+                        <span ng-show="frmUpdateProductCategory.name.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>
                     </div>
                 </div>
 
@@ -42,8 +42,8 @@
                     <label for="alias" class="col-sm-2 col-form-label">Tiêu đề SEO</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" required name="alias" ng-model="productCategory.Alias">
-                        <span ng-show="frmAddProductCategory.alias.$invalid && !frmAddProductCategory.alias.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tiêu đề SEO</span>
-                        <span ng-show="frmAddProductCategory.alias.$error.maxlength" class="badge badge-pill badge-danger">Tiêu đề SEO chỉ được 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.alias.$invalid && !frmUpdateProductCategory.alias.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tiêu đề SEO</span>
+                        <span ng-show="frmUpdateProductCategory.alias.$error.maxlength" class="badge badge-pill badge-danger">Tiêu đề SEO chỉ được 256 ký tự</span>
                     </div>
                 </div>
 
@@ -51,7 +51,7 @@
                     <label for="decription" class="col-sm-2 col-form-label">Mô tả ngắn</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="500" name="decription" ng-model="productCategory.Description">
-                        <span ng-show="frmAddProductCategory.decription.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 500 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.decription.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 500 ký tự</span>
                     </div>
                 </div>
 
@@ -61,7 +61,7 @@
                         <select name="parentId" class="form-control" ng-model="productCategory.ParentID" ng-options="option.ID as option.Name for option in parentCategories">
                             <option value="">--- Danh mục gốc ---</option>
                         </select>
-                        <input type="hidden" name="parentId" ng-model="productCategory.ParentID"/>
+                        <input type="hidden" name="parentId" ng-model="productCategory.ParentID" />
                     </div>
                 </div>
 
@@ -69,7 +69,7 @@
                     <label for="displayOrder" class="col-sm-2 col-form-label">Thứ tự</label>
                     <div class="col-sm-10">
                         <input type="number" class="form-control" required name="displayOrder" ng-model="productCategory.DisplayOrder">
-                        <span ng-show="frmAddProductCategory.displayOrder.$invalid" class="badge badge-pill badge-danger">Phải nhập thứ tự</span>
+                        <span ng-show="frmUpdateProductCategory.displayOrder.$invalid" class="badge badge-pill badge-danger">Phải nhập thứ tự</span>
                     </div>
                 </div>
 
@@ -77,7 +77,7 @@
                     <label for="image" class="col-sm-2 col-form-label">Hình ảnh</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" name="image" ng-model="productCategory.Image">
-                        <span ng-show="frmAddProductCategory.image.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.image.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 256 ký tự</span>
                     </div>
                 </div>
 
@@ -85,7 +85,7 @@
                     <label for="metaKeyword" class="col-sm-2 col-form-label">Meta Keyword</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" name="metaKeyword" ng-model="productCategory.MetaKeyword">
-                        <span ng-show="frmAddProductCategory.metaKeyword.$error.maxlength" class="badge badge-pill badge-danger">Meta Keyword chỉ được 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.metaKeyword.$error.maxlength" class="badge badge-pill badge-danger">Meta Keyword chỉ được 256 ký tự</span>
                     </div>
                 </div>
 
@@ -93,7 +93,7 @@
                     <label for="metaDecription" class="col-sm-2 col-form-label">Meta Decription</label>
                     <div class="col-sm-10">
                         <input type="text" class="form-control" ng-maxlength="256" name="metaDecription" ng-model="productCategory.MetaDescription">
-                        <span ng-show="frmAddProductCategory.metaDecription.$error.maxlength" class="badge badge-pill badge-danger">Meta Decription chỉ được 256 ký tự</span>
+                        <span ng-show="frmUpdateProductCategory.metaDecription.$error.maxlength" class="badge badge-pill badge-danger">Meta Decription chỉ được 256 ký tự</span>
                     </div>
                 </div>
 
@@ -115,7 +115,7 @@
             <!-- /.card-body -->
             <div class="card-footer">
                 <button ui-sref="product_categories" class="btn btn-default">Hủy</button>
-                <button type="submit" ng-disabled="frmAddProductCategory.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
+                <button type="submit" ng-disabled="frmUpdateProductCategory.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
             </div>
             <!-- /.card-footer -->
         </form>
