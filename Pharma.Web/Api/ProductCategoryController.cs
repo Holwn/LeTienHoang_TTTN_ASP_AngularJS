@@ -10,6 +10,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Script.Serialization;
 
 namespace Pharma.Web.Api
 {
@@ -27,41 +28,41 @@ namespace Pharma.Web.Api
 
         [Route("getallparents")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage requestMessage)
+        public HttpResponseMessage Get(HttpRequestMessage request)
         {
-            return CreateHttpReponse(requestMessage, () =>
+            return CreateHttpReponse(request, () =>
             {
                 var listCategory = _productCategoryService.GetAll();
 
                 var listproductCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<ProductCategoryViewModel>>(listCategory);
                 
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listproductCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listproductCategoryVm);
 
-                return responseMessage;
+                return response;
             });
         }
 
         [Route("getbyid/{id:int}")]
         [HttpGet]
-        public HttpResponseMessage GetById(HttpRequestMessage requestMessage,int id)
+        public HttpResponseMessage GetById(HttpRequestMessage request,int id)
         {
-            return CreateHttpReponse(requestMessage, () =>
+            return CreateHttpReponse(request, () =>
             {
                 var listCategory = _productCategoryService.GetById(id);
 
                 var listproductCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<ProductCategoryViewModel>(listCategory);
 
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, listproductCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listproductCategoryVm);
 
-                return responseMessage;
+                return response;
             });
         }
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage requestMessage,string keyword,int page,int pageSize = 20)
+        public HttpResponseMessage Get(HttpRequestMessage request,string keyword,int page,int pageSize = 20)
         {
-            return CreateHttpReponse(requestMessage, () =>
+            return CreateHttpReponse(request, () =>
             {
                 int totalRow = 0;
                 var listCategory = _productCategoryService.GetAll(keyword);
@@ -79,9 +80,9 @@ namespace Pharma.Web.Api
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
                 };
 
-                HttpResponseMessage responseMessage = requestMessage.CreateResponse(HttpStatusCode.OK, paginationSet);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, paginationSet);
 
-                return responseMessage;
+                return response;
             });
         }
 
@@ -137,6 +138,57 @@ namespace Pharma.Web.Api
 
                     var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<ProductCategoryViewModel>(dbProductCategory);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
+                }
+                return response;
+            });
+        }
+
+        [Route("delete")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage Delete(HttpRequestMessage request, int id)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var oldProductCategory = _productCategoryService.Delete(id);
+                    _productCategoryService.Save();
+
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<ProductCategoryViewModel>(oldProductCategory);
+                    response = request.CreateResponse(HttpStatusCode.Created, responseDate);
+                }
+                return response;
+            });
+        }
+
+        [Route("deletemulti")]
+        [HttpDelete]
+        [AllowAnonymous]
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedProductCategories)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                HttpResponseMessage response = null;
+                if (!ModelState.IsValid)
+                {
+                    response = request.CreateResponse(HttpStatusCode.BadRequest, ModelState);
+                }
+                else
+                {
+                    var listProductCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedProductCategories);
+                    foreach(var item in listProductCategory)
+                    {
+                        _productCategoryService.Delete(item);
+                    }    
+                    _productCategoryService.Save();
+
+                    response = request.CreateResponse(HttpStatusCode.OK, listProductCategory.Count);
                 }
                 return response;
             });

@@ -7,7 +7,16 @@
         return {
             get: get,
             post: post,
-            put: put
+            put: put,
+            del: del
+        }
+
+        function get(url, params, success, failure) {
+            $http.get(url, params).then(function (result) {
+                success(result);
+            }, function (error) {
+                failure(error);
+            });
         }
 
         function post(url, data, success, failure) {
@@ -36,11 +45,16 @@
             });
         }
 
-        function get(url, params, success, failure) {
-            $http.get(url, params).then(function (result) {
+        function del(url, data, success, failure) {
+            $http.delete(url, data).then(function (result) {
                 success(result);
             }, function (error) {
-                failure(error);
+                if (error.Status === 401) {
+                    notificationService.displayError('Authenticate is required.');
+                }
+                else if (failure != null) {
+                    failure(error);
+                }
             });
         }
     }
