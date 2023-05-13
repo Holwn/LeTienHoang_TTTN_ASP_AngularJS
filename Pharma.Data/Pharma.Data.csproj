@@ -80,6 +80,10 @@
     <Compile Include="Migrations\202305031507224_ChangeKey.designer.cs">
       <DependentUpon>202305031507224_ChangeKey.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305130842375_AddTagField.cs" />
+    <Compile Include="Migrations\202305130842375_AddTagField.designer.cs">
+      <DependentUpon>202305130842375_AddTagField.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PharmaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -135,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305031507224_ChangeKey.resx">
       <DependentUpon>202305031507224_ChangeKey.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305130842375_AddTagField.resx">
+      <DependentUpon>202305130842375_AddTagField.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

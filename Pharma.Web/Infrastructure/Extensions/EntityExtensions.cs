@@ -146,6 +146,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             product.UpdatedDate = productVm.UpdatedDate;
             product.UpdatedBy = productVm.UpdatedBy;
             product.Status = productVm.Status;
+            product.Tags = productVm.Tags;
         }
         public static void UpdateReceiptNoteItem(this ReceiptNoteItem receiptNoteItem, ReceiptNoteItemViewModel receiptNoteItemVm)
         {
