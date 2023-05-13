@@ -5,6 +5,7 @@
         [
             'pharma.product_categories',
             'pharma.products',
+            'pharma.units',
             'pharma.common'
         ]).config(config);
 

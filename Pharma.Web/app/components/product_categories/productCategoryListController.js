@@ -10,7 +10,7 @@
         $scope.keyword = '';
         $scope.isAll = false;
 
-        $scope.getProductCategoies = getProductCategories;
+        $scope.getProductCategories = getProductCategories;
         $scope.search = search;
         $scope.deleteProductCategory = deleteProductCategory;
         $scope.selectAll = selectAll;
@@ -95,12 +95,12 @@
                 $scope.productCategories = result.data.Items;
                 $scope.page = result.data.Page;
                 $scope.pagesCount = result.data.TotalPages;
-                $scope.totalCount = result.data.TotalCount;
+                $scope.totalCount = result.data.TotalCount ? result.data.TotalCount:0;
             }, function () {
                 console.log('Load productcategory failed.');
             });
         }
 
-        $scope.getProductCategoies();
+        $scope.getProductCategories();
     }
 })(angular.module('pharma.product_categories'));
