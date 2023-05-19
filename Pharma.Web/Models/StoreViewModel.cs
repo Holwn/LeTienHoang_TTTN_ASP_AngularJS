@@ -20,9 +20,9 @@ namespace Pharma.Web.Models
         public int? OwnerID { set; get; }
         public int RoleID { set; get; }
         public DateTime? CreatedDate { set; get; }
-        public int? CreatedBy { set; get; }
+        public string CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }
-        public int? UpdatedBy { set; get; }
+        public string UpdatedBy { set; get; }
         public bool Status { set; get; }
         public virtual IEnumerable<ProductViewModel> Products { set; get; }
         public virtual IEnumerable<UnitViewModel> Units { set; get; }

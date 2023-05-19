@@ -84,6 +84,14 @@
     <Compile Include="Migrations\202305130842375_AddTagField.designer.cs">
       <DependentUpon>202305130842375_AddTagField.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305161648560_ChangeBytoString.cs" />
+    <Compile Include="Migrations\202305161648560_ChangeBytoString.designer.cs">
+      <DependentUpon>202305161648560_ChangeBytoString.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305191642424_UpdateFooter.cs" />
+    <Compile Include="Migrations\202305191642424_UpdateFooter.designer.cs">
+      <DependentUpon>202305191642424_UpdateFooter.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PharmaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -142,6 +150,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305130842375_AddTagField.resx">
       <DependentUpon>202305130842375_AddTagField.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305161648560_ChangeBytoString.resx">
+      <DependentUpon>202305161648560_ChangeBytoString.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305191642424_UpdateFooter.resx">
+      <DependentUpon>202305191642424_UpdateFooter.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

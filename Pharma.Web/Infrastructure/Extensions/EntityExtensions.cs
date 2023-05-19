@@ -40,6 +40,13 @@ namespace Pharma.Web.Infrastructure.Extensions
             deliveryNote.UpdatedBy = deliveryNoteVm.UpdatedBy;
             deliveryNote.Status = deliveryNoteVm.Status;
         }
+        public static void UpdateFooter(this Footer footer, FooterViewModel footerVm)
+        {
+            footer.ID = footerVm.ID;
+            footer.Name = footerVm.Name;
+            footer.Type = footerVm.Type;
+            footer.Link = footerVm.Link;
+        }
         public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryVm)
         {
             postCategory.ID = postCategoryVm.ID;

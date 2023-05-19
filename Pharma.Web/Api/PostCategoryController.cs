@@ -13,6 +13,7 @@ using Pharma.Web.Mappings;
 namespace Pharma.Web.Api
 {
     [RoutePrefix("api/postcategory")]
+    [Authorize]
     public class PostCategoryController : ApiControllerBase
     {
         IPostCategoryService _postCategoryService;

@@ -29,9 +29,9 @@ namespace Pharma.Web.Models
         public int? ViewCount { set; get; }
         public string Tags { set; get; }
         public DateTime? CreatedDate { set; get; }
-        public int? CreatedBy { set; get; }
+        public string CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }
-        public int? UpdatedBy { set; get; }
+        public string UpdatedBy { set; get; }
         public bool Status { set; get; }
         public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }
         public virtual IEnumerable<ProductMappingViewModel> ProductMappings { set; get; }

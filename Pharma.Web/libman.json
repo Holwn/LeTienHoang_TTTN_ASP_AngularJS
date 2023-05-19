@@ -37,6 +37,14 @@
     {
       "library": "ckeditor@4.21.0",
       "destination": "Assets/admin/libs/ckeditor/ckeditor/"
+    },
+    {
+      "library": "angular-local-storage@0.7.1",
+      "destination": "Assets/admin/libs/angular-local-storage/"
+    },
+    {
+      "library": "angular-loading-bar@0.9.0",
+      "destination": "Assets/admin/libs/angular-loading-bar/"
     }
   ]
 }

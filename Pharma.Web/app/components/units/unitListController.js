@@ -103,4 +103,4 @@
 
         $scope.getUnits();
     }
-})(angular.module('pharma.product_categories'));
+})(angular.module('pharma.units'));

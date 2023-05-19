@@ -12,6 +12,7 @@ namespace Pharma.Web.Mappings
               {
                   cfg.CreateMap<DeliveryNoteItem, DeliveryNoteItemViewModel>();
                   cfg.CreateMap<DeliveryNote, DeliveryNoteViewModel>();
+                  cfg.CreateMap<Footer, FooterViewModel>();
                   cfg.CreateMap<PostCategory, PostCategoryViewModel>();
                   cfg.CreateMap<PostTag, PostTagViewModel>();
                   cfg.CreateMap<Post, PostViewModel>();

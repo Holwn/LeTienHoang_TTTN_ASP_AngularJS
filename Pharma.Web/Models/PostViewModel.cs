@@ -22,9 +22,9 @@ namespace Pharma.Web.Models
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
         public DateTime? CreatedDate { set; get; }
-        public int? CreatedBy { set; get; }
+        public string CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }
-        public int? UpdatedBy { set; get; }
+        public string UpdatedBy { set; get; }
         public bool Status { set; get; }
         public virtual PostCategoryViewModel PostCategory { set; get; }
 

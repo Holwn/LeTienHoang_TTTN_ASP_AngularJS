@@ -7,10 +7,14 @@ namespace Pharma.Model.Models
     public class Footer
     {
         [Key]
-        [MaxLength(50)]
-        public string ID { set; get; }
-
+        public int ID { set; get; }
         [Required]
-        public string Contents { set; get; }
+        [MaxLength(50)]
+        public string Name { set; get; }
+        [Required]
+        [MaxLength(50)]
+        public string Type { set; get; }
+        [MaxLength(256)]
+        public string Link { set; get; }
     }
 }

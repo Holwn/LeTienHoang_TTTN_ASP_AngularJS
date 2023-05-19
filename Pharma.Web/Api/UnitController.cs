@@ -15,6 +15,7 @@ using System.Web.Script.Serialization;
 namespace Pharma.Web.Api
 {
     [RoutePrefix("api/unit")]
+    [Authorize]
     public class UnitController : ApiControllerBase
     {
         #region Initializeprivate

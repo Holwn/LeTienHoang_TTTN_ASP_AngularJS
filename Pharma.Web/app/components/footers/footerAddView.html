@@ -1,0 +1,88 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới cuối trang</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Sản phẩm</li>
+                    <li class="breadcrumb-item"><a ui-sref="footers">Cuối trang</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="card card-default">
+        <div class="card-header">
+            <h3 class="card-title">Thêm mới cuối trang</h3>
+        </div>
+        <!-- /.card-header -->
+        <!-- form start -->
+        <form class="form-horizontal" novalidate name="frmAddFooter" role="form" ng-submit="Addfooter()">
+            <div class="card-body row">
+
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-4 col-form-label">Tên đơn vị</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="footer.Name">
+                            <span ng-show="frmAddFooter.name.$invalid && !frmAddFooter.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tên đơn vị</span>
+                            <span ng-show="frmAddFooter.name.$error.maxlength" class="badge badge-pill badge-danger">Tên đơn vị chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-4">
+                            <div class="form-check">
+                                <label class="form-check-label" for="status">
+                                    <input type="checkbox" class="form-check-input" name="status" ng-model="footer.Status" ng-checked="footer.Status">Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="parentId" class="col-sm-4 col-form-label">Danh mục cha</label>
+                        <div class="col-sm-8">
+                            <select name="parentId" class="form-control" ng-model="footer.ParentID" ng-options="option.ID as option.Name for option in parentfooters">
+                                <option value="">--- Đơn vị gốc ---</option>
+                            </select>
+                            <input type="hidden" name="parentId" ng-model="footer.ParentID" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="contain" class="col-sm-4 col-form-label">Quy đổi từ đơn vị cha</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control" name="contain" ng-model="footer.Contain">
+                            <!--<span ng-show="frmAddFooter.parentId.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>-->
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button ui-sref="footers" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddFooter.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->
