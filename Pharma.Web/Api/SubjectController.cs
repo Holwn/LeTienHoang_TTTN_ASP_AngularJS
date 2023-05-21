@@ -14,16 +14,16 @@ using System.Web.Script.Serialization;
 
 namespace Pharma.Web.Api
 {
-    [RoutePrefix("api/postcategory")]
+    [RoutePrefix("api/subject")]
     [Authorize]
-    public class PostCategoryController : ApiControllerBase
+    public class SubjectController : ApiControllerBase
     {
         #region Initializeprivate
-        IPostCategoryService _postCategoryService;
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
+        ISubjectService _subjectService;
+        public SubjectController(IErrorService errorService, ISubjectService subjectService)
             : base(errorService)
         {
-            this._postCategoryService = postCategoryService;
+            this._subjectService = subjectService;
         }
         #endregion
 
@@ -33,11 +33,11 @@ namespace Pharma.Web.Api
         {
             return CreateHttpReponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetAll();
+                var list = _subjectService.GetAll();
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<PostCategoryViewModel>>(listCategory);
+                var listSubjectVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<SubjectViewModel>>(list);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listSubjectVm);
 
                 return response;
             });
@@ -49,11 +49,11 @@ namespace Pharma.Web.Api
         {
             return CreateHttpReponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetById(id);
+                var list = _subjectService.GetById(id);
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(listCategory);
+                var listSubjectVm = AutoMapperConfiguration.InitializeAutomapper().Map<SubjectViewModel>(list);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listSubjectVm);
 
                 return response;
             });
@@ -61,21 +61,21 @@ namespace Pharma.Web.Api
 
         [Route("getall")]
         [HttpGet]
-        public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int pageSize = 20)
+        public HttpResponseMessage Get(HttpRequestMessage request, string keyword, int page, int pageSize = 10)
         {
             return CreateHttpReponse(request, () =>
             {
                 int totalRow = 0;
-                var listCategory = _postCategoryService.GetAll(keyword);
+                var list = _subjectService.GetAll(keyword);
 
-                totalRow = listCategory.Count();
-                var query = listCategory.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                totalRow = list.Count();
+                var query = list.OrderByDescending(x => x.ID).Skip(page * pageSize).Take(pageSize);
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<IEnumerable<PostCategoryViewModel>>(query);
+                var listSubjectVm = AutoMapperConfiguration.InitializeAutomapper().Map<IEnumerable<SubjectViewModel>>(query);
 
-                var paginationSet = new PaginationSet<PostCategoryViewModel>()
+                var paginationSet = new PaginationSet<SubjectViewModel>()
                 {
-                    Items = listPostCategoryVm,
+                    Items = listSubjectVm,
                     Page = page,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
@@ -90,7 +90,7 @@ namespace Pharma.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, PostCategoryViewModel PostCategoryVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, SubjectViewModel SubjectVm)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -101,15 +101,15 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var newPostCategory = new PostCategory();
-                    newPostCategory.UpdatePostCategory(PostCategoryVm);
-                    newPostCategory.CreatedDate = DateTime.Now;
-                    newPostCategory.CreatedBy = User.Identity.Name;
+                    var newSubject = new Subject();
+                    newSubject.UpdateSubject(SubjectVm);
+                    newSubject.CreatedDate = DateTime.Now;
+                    newSubject.UpdatedBy = User.Identity.Name;
 
-                    _postCategoryService.Add(newPostCategory);
-                    _postCategoryService.Save();
+                    _subjectService.Add(newSubject);
+                    _subjectService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(newPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<SubjectViewModel>(newSubject);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -120,7 +120,7 @@ namespace Pharma.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, PostCategoryViewModel PostCategoryVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, SubjectViewModel SubjectVm)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -131,15 +131,15 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var dbPostCategory = _postCategoryService.GetById(PostCategoryVm.ID);
-                    dbPostCategory.UpdatePostCategory(PostCategoryVm);
-                    dbPostCategory.UpdatedDate = DateTime.Now;
-                    dbPostCategory.UpdatedBy = User.Identity.Name;
+                    var dbSubject = _subjectService.GetById(SubjectVm.ID);
+                    dbSubject.UpdateSubject(SubjectVm);
+                    dbSubject.UpdatedDate = DateTime.Now;
+                    dbSubject.UpdatedBy = User.Identity.Name;
 
-                    _postCategoryService.Update(dbPostCategory);
-                    _postCategoryService.Save();
+                    _subjectService.Update(dbSubject);
+                    _subjectService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(dbPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<SubjectViewModel>(dbSubject);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -160,10 +160,10 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var oldPostCategory = _postCategoryService.Delete(id);
-                    _postCategoryService.Save();
+                    var oldSubject = _subjectService.Delete(id);
+                    _subjectService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(oldPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<SubjectViewModel>(oldSubject);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -173,7 +173,7 @@ namespace Pharma.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedPostCategories)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedSubjects)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -184,14 +184,14 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var listPostCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedPostCategories);
-                    foreach (var item in listPostCategory)
+                    var listSubject = new JavaScriptSerializer().Deserialize<List<int>>(checkedSubjects);
+                    foreach (var item in listSubject)
                     {
-                        _postCategoryService.Delete(item);
+                        _subjectService.Delete(item);
                     }
-                    _postCategoryService.Save();
+                    _subjectService.Save();
 
-                    response = request.CreateResponse(HttpStatusCode.OK, listPostCategory.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listSubject.Count);
                 }
                 return response;
             });

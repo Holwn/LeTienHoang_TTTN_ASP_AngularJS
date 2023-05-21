@@ -14,16 +14,16 @@ using System.Web.Script.Serialization;
 
 namespace Pharma.Web.Api
 {
-    [RoutePrefix("api/postcategory")]
+    [RoutePrefix("api/post")]
     [Authorize]
-    public class PostCategoryController : ApiControllerBase
+    public class PostController : ApiControllerBase
     {
         #region Initializeprivate
-        IPostCategoryService _postCategoryService;
-        public PostCategoryController(IErrorService errorService, IPostCategoryService postCategoryService)
+        IPostService _postService;
+        public PostController(IErrorService errorService, IPostService postService)
             : base(errorService)
         {
-            this._postCategoryService = postCategoryService;
+            this._postService = postService;
         }
         #endregion
 
@@ -33,11 +33,11 @@ namespace Pharma.Web.Api
         {
             return CreateHttpReponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetAll();
+                var list = _postService.GetAll();
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<PostCategoryViewModel>>(listCategory);
+                var listPostVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<PostViewModel>>(list);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostVm);
 
                 return response;
             });
@@ -49,11 +49,11 @@ namespace Pharma.Web.Api
         {
             return CreateHttpReponse(request, () =>
             {
-                var listCategory = _postCategoryService.GetById(id);
+                var list = _postService.GetById(id);
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(listCategory);
+                var listPostVm = AutoMapperConfiguration.InitializeAutomapper().Map<PostViewModel>(list);
 
-                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostCategoryVm);
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPostVm);
 
                 return response;
             });
@@ -66,16 +66,16 @@ namespace Pharma.Web.Api
             return CreateHttpReponse(request, () =>
             {
                 int totalRow = 0;
-                var listCategory = _postCategoryService.GetAll(keyword);
+                var list = _postService.GetAll(keyword);
 
-                totalRow = listCategory.Count();
-                var query = listCategory.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
+                totalRow = list.Count();
+                var query = list.OrderByDescending(x => x.CreatedDate).Skip(page * pageSize).Take(pageSize);
 
-                var listPostCategoryVm = AutoMapperConfiguration.InitializeAutomapper().Map<IEnumerable<PostCategoryViewModel>>(query);
+                var listPostVm = AutoMapperConfiguration.InitializeAutomapper().Map<IEnumerable<PostViewModel>>(query);
 
-                var paginationSet = new PaginationSet<PostCategoryViewModel>()
+                var paginationSet = new PaginationSet<PostViewModel>()
                 {
-                    Items = listPostCategoryVm,
+                    Items = listPostVm,
                     Page = page,
                     TotalCount = totalRow,
                     TotalPages = (int)Math.Ceiling((decimal)totalRow / pageSize)
@@ -90,7 +90,7 @@ namespace Pharma.Web.Api
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
-        public HttpResponseMessage Create(HttpRequestMessage request, PostCategoryViewModel PostCategoryVm)
+        public HttpResponseMessage Create(HttpRequestMessage request, PostViewModel PostVm)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -101,15 +101,15 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var newPostCategory = new PostCategory();
-                    newPostCategory.UpdatePostCategory(PostCategoryVm);
-                    newPostCategory.CreatedDate = DateTime.Now;
-                    newPostCategory.CreatedBy = User.Identity.Name;
+                    var newPost = new Post();
+                    newPost.UpdatePost(PostVm);
+                    newPost.CreatedDate = DateTime.Now;
+                    newPost.CreatedBy = User.Identity.Name;
 
-                    _postCategoryService.Add(newPostCategory);
-                    _postCategoryService.Save();
+                    _postService.Add(newPost);
+                    _postService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(newPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostViewModel>(newPost);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -120,7 +120,7 @@ namespace Pharma.Web.Api
         [Route("update")]
         [HttpPut]
         [AllowAnonymous]
-        public HttpResponseMessage Update(HttpRequestMessage request, PostCategoryViewModel PostCategoryVm)
+        public HttpResponseMessage Update(HttpRequestMessage request, PostViewModel PostVm)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -131,15 +131,15 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var dbPostCategory = _postCategoryService.GetById(PostCategoryVm.ID);
-                    dbPostCategory.UpdatePostCategory(PostCategoryVm);
-                    dbPostCategory.UpdatedDate = DateTime.Now;
-                    dbPostCategory.UpdatedBy = User.Identity.Name;
+                    var dbPost = _postService.GetById(PostVm.ID);
+                    dbPost.UpdatePost(PostVm);
+                    dbPost.UpdatedDate = DateTime.Now;
+                    dbPost.UpdatedBy = User.Identity.Name;
 
-                    _postCategoryService.Update(dbPostCategory);
-                    _postCategoryService.Save();
+                    _postService.Update(dbPost);
+                    _postService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(dbPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostViewModel>(dbPost);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -160,10 +160,10 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var oldPostCategory = _postCategoryService.Delete(id);
-                    _postCategoryService.Save();
+                    var oldPost = _postService.Delete(id);
+                    _postService.Save();
 
-                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostCategoryViewModel>(oldPostCategory);
+                    var responseDate = AutoMapperConfiguration.InitializeAutomapper().Map<PostViewModel>(oldPost);
                     response = request.CreateResponse(HttpStatusCode.Created, responseDate);
                 }
                 return response;
@@ -173,7 +173,7 @@ namespace Pharma.Web.Api
         [Route("deletemulti")]
         [HttpDelete]
         [AllowAnonymous]
-        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedPostCategories)
+        public HttpResponseMessage DeleteMulti(HttpRequestMessage request, string checkedPosts)
         {
             return CreateHttpReponse(request, () =>
             {
@@ -184,14 +184,14 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var listPostCategory = new JavaScriptSerializer().Deserialize<List<int>>(checkedPostCategories);
-                    foreach (var item in listPostCategory)
+                    var listPost = new JavaScriptSerializer().Deserialize<List<int>>(checkedPosts);
+                    foreach (var item in listPost)
                     {
-                        _postCategoryService.Delete(item);
+                        _postService.Delete(item);
                     }
-                    _postCategoryService.Save();
+                    _postService.Save();
 
-                    response = request.CreateResponse(HttpStatusCode.OK, listPostCategory.Count);
+                    response = request.CreateResponse(HttpStatusCode.OK, listPost.Count);
                 }
                 return response;
             });

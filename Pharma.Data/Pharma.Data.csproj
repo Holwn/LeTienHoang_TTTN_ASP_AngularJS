@@ -92,6 +92,10 @@
     <Compile Include="Migrations\202305191642424_UpdateFooter.designer.cs">
       <DependentUpon>202305191642424_UpdateFooter.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305211559285_UpdatePost.cs" />
+    <Compile Include="Migrations\202305211559285_UpdatePost.designer.cs">
+      <DependentUpon>202305211559285_UpdatePost.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PharmaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -156,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305191642424_UpdateFooter.resx">
       <DependentUpon>202305191642424_UpdateFooter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305211559285_UpdatePost.resx">
+      <DependentUpon>202305211559285_UpdatePost.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

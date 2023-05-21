@@ -3,12 +3,12 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Danh sách sản phẩm</h1>
+                <h1>Danh sách bài viết</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
-                    <li class="breadcrumb-item">Sản phẩm</li>
+                    <li class="breadcrumb-item">Bài viết</li>
                     <li class="breadcrumb-item active">Danh sách</li>
                 </ol>
             </div>
@@ -31,7 +31,7 @@
                 </div>
                 <div class="col-md-6">
                     <button class="btn btn-danger fa-pull-right" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
-                    <button class="btn btn-success fa-pull-right" ui-sref="add_product">Thêm mới</button>
+                    <button class="btn btn-success fa-pull-right" ui-sref="add_post">Thêm mới</button>
                 </div>
             </div>
             <div class="row">
@@ -41,14 +41,14 @@
                             <tr>
                                 <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
                                 <th style="width: 5%">ID</th>
-                                <th style="width: 55%">Tên sản phẩm</th>
+                                <th style="width: 55%">Tiêu đề bài viết</th>
                                 <th style="width: 20%">Ngày tạo</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width: 10%">Thao tác</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in products">
+                            <tr ng-repeat="item in posts">
                                 <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
@@ -61,10 +61,10 @@
                                     </span>
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" ui-sref="edit_product({id:item.ID})">
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_post({id:item.ID})">
                                         <i class="fa fa-pencil"></i>
                                     </button>
-                                    <button class="btn btn-sm btn-danger" ng-click="deleteProduct(item.ID)">
+                                    <button class="btn btn-sm btn-danger" ng-click="deletePost(item.ID)">
                                         <i class="fa fa-trash"></i>
                                     </button>
                                 </td>
@@ -82,7 +82,7 @@
         </div>
         <!-- /.card-body -->
         <div class="card-footer">
-            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getProducts(page)"></pager-directive>
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getPosts(page)"></pager-directive>
         </div>
         <!-- /.card-footer-->
     </div>

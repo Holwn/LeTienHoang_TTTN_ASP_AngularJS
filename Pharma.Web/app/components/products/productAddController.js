@@ -16,7 +16,9 @@
         $scope.AddProduct = AddProduct;
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.moreImages = [];
-
+        $scope.productCategories = [];
+        $scope.units = [];
+        
         $scope.ChooseMoreImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
@@ -53,7 +55,11 @@
 
         function getProductCategories() {
             apiService.get('api/productcategory/getallparents', null, function (result) {
-                $scope.productCategories = result.data;
+                angular.forEach(result.data, function (item) {
+                    if (item.Status == true) {
+                        $scope.productCategories.push(item);
+                    }
+                })
             }, function () {
                 console.log('Get product category failed.');
             });
@@ -61,7 +67,11 @@
 
         function getUnits() {
             apiService.get('api/unit/getallparents', null, function (result) {
-                $scope.units = result.data;
+                angular.forEach(result.data, function (item) {
+                    if (item.Status == true) {
+                        $scope.units.push(item);
+                    }
+                })
             }, function () {
                 console.log('Get product category failed.');
             });

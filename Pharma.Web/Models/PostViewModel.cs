@@ -21,6 +21,7 @@ namespace Pharma.Web.Models
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
+        public string Tags { set; get; }
         public DateTime? CreatedDate { set; get; }
         public string CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }

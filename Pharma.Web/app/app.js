@@ -4,8 +4,11 @@
     angular.module('pharma',
         [
             'pharma.footers',
+            'pharma.post_categories',
+            'pharma.posts',
             'pharma.product_categories',
             'pharma.products',
+            'pharma.subjects',
             'pharma.units',
             'pharma.common'
         ])

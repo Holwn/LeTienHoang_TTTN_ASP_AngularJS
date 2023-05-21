@@ -1,41 +1,41 @@
 ﻿(function (app) {
-    app.controller('productCategoryAddController', productCategoryAddController);
+    app.controller('postCategoryAddController', postCategoryAddController);
 
-    productCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state','commonService'];
+    postCategoryAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService'];
 
-    function productCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
-        $scope.productCategory = {
+    function postCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
+        $scope.postCategory = {
             CreateDate: new Date(),
             Status: true,
         }
         $scope.GetSeoTitle = GetSeoTitle;
-        $scope.AddProductCategory = AddProductCategory;
+        $scope.AddPostCategory = AddPostCategory;
 
         $scope.ChooseImage = function () {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
                 $scope.$apply(function () {
-                    $scope.productCategory.Image = fileUrl;
+                    $scope.postCategory.Image = fileUrl;
                 });
             }
             finder.popup();
         }
 
         function GetSeoTitle() {
-            $scope.productCategory.Alias = commonService.getSeoTitle($scope.productCategory.Name);
+            $scope.postCategory.Alias = commonService.getSeoTitle($scope.postCategory.Name);
         }
 
-        function AddProductCategory() {
-            apiService.post('api/productcategory/create', $scope.productCategory, function (result) {
+        function AddPostCategory() {
+            apiService.post('api/postcategory/create', $scope.postCategory, function (result) {
                 notificationService.displaySuccess(result.data.Name + ' đã được thêm mới');
-                $state.go('product_categories');
+                $state.go('post_categories');
             }, function (error) {
                 notificationService.displayError('Thêm mới không thành công.');
             });
         }
 
         function loadParentCategories() {
-            apiService.get('api/productcategory/getallparents', null, function (result) {
+            apiService.get('api/postcategory/getallparents', null, function (result) {
                 $scope.parentCategories = result.data;
             }, function () {
                 console.log('Cannot get list parent');
@@ -45,4 +45,4 @@
         loadParentCategories();
     }
 
-})(angular.module('pharma.product_categories'));
+})(angular.module('pharma.post_categories'));

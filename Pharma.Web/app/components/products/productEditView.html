@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
                     <li class="breadcrumb-item">Sản phẩm</li>
                     <li class="breadcrumb-item"><a ui-sref="products">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
@@ -21,11 +21,7 @@
 <section class="content">
     <!-- Horizontal Form -->
     <div class="card card-default">
-        <div class="card-header">
-            <h3 class="card-title">{{product.Name}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
+        
         <form class="form-horizontal" novalidate name="frmUpdateProduct" role="form" ng-submit="UpdateProduct()">
             <div class="card-body row">
 

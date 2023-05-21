@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
                     <li class="breadcrumb-item">Sản phẩm</li>
                     <li class="breadcrumb-item"><a ui-sref="product_categories">Danh mục</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
@@ -21,11 +21,7 @@
 <section class="content">
     <!-- Horizontal Form -->
     <div class="card card-default">
-        <div class="card-header">
-            <h3 class="card-title">{{productCategory.Name}}</h3>
-        </div>
-        <!-- /.card-header -->
-        <!-- form start -->
+        
         <form class="form-horizontal" novalidate name="frmUpdateProductCategory" role="form" ng-submit="UpdateProductCategory()">
             <div class="card-body row">
                 <div class="col-md-6">
@@ -114,6 +110,7 @@
                         <div class="col-sm-8">
                             <input type="text" class="form-control" ng-maxlength="256" name="image" ng-model="productCategory.Image">
                             <span ng-show="frmUpdateProductCategory.image.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 256 ký tự</span>
+                            <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
                         </div>
                     </div>
                 </div>

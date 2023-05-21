@@ -7,10 +7,7 @@
                 <a class="nav-link" data-widget="pushmenu" href="javascript:void(0);" role="button"><i class="fas fa-bars"></i></a>
             </li>
             <li class="nav-item d-none d-sm-inline-block">
-                <a href="../../index3.html" class="nav-link">Home</a>
-            </li>
-            <li class="nav-item d-none d-sm-inline-block">
-                <a href="#" class="nav-link">Contact</a>
+                <a href="admin#!/admin" class="nav-link">Trang chủ</a>
             </li>
         </ul>
 
@@ -60,7 +57,7 @@
     <!-- Main Sidebar Container -->
     <aside class="main-sidebar sidebar-dark-gray-dark elevation-4">
         <!-- Brand Logo -->
-        <a href="#" class="brand-link">
+        <a href="admin#!/admin" class="brand-link">
             <img src="../../../Assets/admin/img/pharma/config/logoMedicine.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-2" style="opacity: .8">
             <span class="brand-text font-weight-light">PharmaHoang</span>
         </a>
@@ -126,6 +123,62 @@
                         <a href="javascript:void(0);" class="nav-link dropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
                             <i class="nav-icon fas fa-tachometer-alt"></i>
                             <p>
+                                Chủ thể
+                            </p>
+                        </a>
+                        <ul class="dropdown-menu bg-secondary bg-gradient">
+                            <li class="dropdown-item">
+                                <a ui-sref="subjects" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Chủ thể</p>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a ui-sref="products" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Sản phẩm</p>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a ui-sref="footers" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Cuối trang</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item collapsed">
+                        <a href="javascript:void(0);" class="nav-link dropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
+                                Bài viết
+                            </p>
+                        </a>
+                        <ul class="dropdown-menu bg-secondary bg-gradient">
+                            <li class="dropdown-item">
+                                <a ui-sref="post_categories" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Chủ đề bài viết</p>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a ui-sref="posts" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Danh sách bài viết</p>
+                                </a>
+                            </li>
+                            <li class="dropdown-item">
+                                <a ui-sref="pages" class="nav-link">
+                                    <i class="far fa-circle nav-icon"></i>
+                                    <p>Trang đơn</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item collapsed">
+                        <a href="javascript:void(0);" class="nav-link dropdown" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+                            <i class="nav-icon fas fa-tachometer-alt"></i>
+                            <p>
                                 Cấu hình
                             </p>
                         </a>
@@ -183,9 +236,9 @@
     <!-- /.content-wrapper -->
 
     <footer class="main-footer">
-        <div class="float-right d-none d-sm-block">
+        <!--<div class="float-right d-none d-sm-block">
             <b>Version</b> 3.2.0
-        </div>
+        </div>-->
         <strong>Copyright &copy; <a href="https://www.facebook.com/letienhoang.08">Lê Tiến Hoàng</a>.</strong> All rights reserved.
     </footer>
 

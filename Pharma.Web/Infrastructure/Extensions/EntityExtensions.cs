@@ -84,6 +84,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             post.HomeFlag = postVm.HomeFlag;
             post.HotFlag = postVm.HotFlag;
             post.ViewCount = postVm.ViewCount;
+            post.Tags = postVm.Tags;
             post.CreatedDate = postVm.CreatedDate;
             post.CreatedBy = postVm.CreatedBy;
             post.UpdatedDate = postVm.UpdatedDate;

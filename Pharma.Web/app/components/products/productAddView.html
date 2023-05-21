@@ -7,7 +7,7 @@
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="#">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
                     <li class="breadcrumb-item">Sản phẩm</li>
                     <li class="breadcrumb-item"><a ui-sref="products">Sản phẩm</a></li>
                     <li class="breadcrumb-item active">Thêm mới</li>
@@ -21,10 +21,6 @@
 <section class="content">
     <!-- Horizontal Form -->
     <div class="card card-default">
-        <div class="card-header">
-            <h3 class="card-title">Thêm mới</h3>
-        </div>
-        <!-- /.card-header -->
         <!-- form start -->
         <form class="form-horizontal" novalidate name="frmAddProduct" role="form" ng-submit="AddProduct()">
             <div class="card-body row">
@@ -178,7 +174,7 @@
                         <label for="moreImage" class="col-sm-4 col-form-label">Thêm ảnh</label>
                         <div class="col-sm-8">
                             <ul class="list-inline">
-                                <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
+                                <li class="list-inline-item" ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
                             </ul>
                             <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh thêm</button>
                         </div>
