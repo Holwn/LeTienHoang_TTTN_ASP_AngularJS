@@ -1,4 +1,5 @@
 ﻿using Pharma.Model.Models;
+using Pharma.Web.Mappings;
 using Pharma.Web.Models;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ namespace Pharma.Web.Infrastructure.Extensions
         {
             deliveryNoteItem.NoteID = deliveryNoteItemVm.NoteID;
             deliveryNoteItem.ProductID = deliveryNoteItemVm.ProductID;
+            deliveryNoteItem.UnitID = deliveryNoteItemVm.UnitID;
             deliveryNoteItem.BatchPrice = deliveryNoteItemVm.BatchPrice;
             deliveryNoteItem.RetailPrice = deliveryNoteItemVm.RetailPrice;
             deliveryNoteItem.Quantity = deliveryNoteItemVm.Quantity;
@@ -34,6 +36,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             deliveryNote.PaymentAmount = deliveryNoteVm.PaymentAmount;
             deliveryNote.PaymentMethod = deliveryNoteVm.PaymentMethod;
             deliveryNote.StoreID = deliveryNoteVm.StoreID;
+            deliveryNote.DeliveryNoteProductItems = deliveryNoteVm.DeliveryNoteProductItems;
             deliveryNote.CreatedDate = deliveryNoteVm.CreatedDate;
             deliveryNote.CreatedBy = deliveryNoteVm.CreatedBy;
             deliveryNote.UpdatedDate = deliveryNoteVm.UpdatedDate;
@@ -160,8 +163,10 @@ namespace Pharma.Web.Infrastructure.Extensions
         {
             receiptNoteItem.NoteID = receiptNoteItemVm.NoteID;
             receiptNoteItem.ProductID = receiptNoteItemVm.ProductID;
+            receiptNoteItem.UnitID = receiptNoteItemVm.UnitID;
             receiptNoteItem.BatchPrice = receiptNoteItemVm.BatchPrice;
             receiptNoteItem.RetailPrice = receiptNoteItemVm.RetailPrice;
+            receiptNoteItem.Quantity = receiptNoteItemVm.Quantity;
             receiptNoteItem.VAT = receiptNoteItemVm.VAT;
             receiptNoteItem.Discount = receiptNoteItemVm.Discount;
             receiptNoteItem.BatchNumber = receiptNoteItemVm.BatchNumber;
@@ -179,6 +184,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             receiptNote.PaymentAmount = receiptNoteVm.PaymentAmount;
             receiptNote.PaymentMethod = receiptNoteVm.PaymentMethod;
             receiptNote.StoreID = receiptNoteVm.StoreID;
+            receiptNote.ReceiptNoteProductItems = receiptNoteVm.ReceiptNoteProductItems;
             receiptNote.CreatedDate = receiptNoteVm.CreatedDate;
             receiptNote.CreatedBy = receiptNoteVm.CreatedBy;
             receiptNote.UpdatedDate = receiptNoteVm.UpdatedDate;

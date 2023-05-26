@@ -14,9 +14,11 @@ namespace Pharma.Model.Models
         [Key]
         [Column(Order = 2)]
         public int ProductID { set; get; }
+        public int? UnitID { set; get; }
         public decimal? BatchPrice { set; get; }
         public decimal? RetailPrice { set; get; }
 
+        public int? Quantity { set; get; }
         public int? VAT { set; get; }
         public decimal? Discount { set; get; }
 

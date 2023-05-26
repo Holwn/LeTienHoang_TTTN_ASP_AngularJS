@@ -1,14 +1,16 @@
 ﻿(function (app) {
     'use strict';
-    app.factory('authData', [function () {
-        var authDataFactory = {};
+    app.factory('authData', [
+        function () {
+            var authDataFactory = {};
 
-        var authentication = {
-            IsAuthenticated: false,
-            userName: ""
-        };
-        authDataFactory.authenticationData = authentication;
+            var authentication = {
+                IsAuthenticated: false,
+                userName: ""
+            };
+            authDataFactory.authenticationData = authentication;
 
-        return authDataFactory;
-    }]);
+            return authDataFactory;
+        }
+    ]);
 })(angular.module('pharma.common'));

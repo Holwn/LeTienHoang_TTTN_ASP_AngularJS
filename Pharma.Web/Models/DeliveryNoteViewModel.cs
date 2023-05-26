@@ -19,12 +19,13 @@ namespace Pharma.Web.Models
         public decimal? PaymentAmount { set; get; }
         public string PaymentMethod { set; get; }
         public int? StoreID { set; get; }
+        public string DeliveryNoteProductItems { set; get; }
         public DateTime? CreatedDate { set; get; }
         public string CreatedBy { set; get; }
         public DateTime? UpdatedDate { set; get; }
         public string UpdatedBy { set; get; }
         public bool Status { set; get; }
-        public virtual IEnumerable<DeliveryNoteItemViewModel> DeliveryNoteItems { set; get; }
+        public IEnumerable<DeliveryNoteItemViewModel> DeliveryNoteItems { set; get; }
         public virtual StoreViewModel Store { set; get; }
         public virtual SubjectViewModel Subject { set; get; }
     }

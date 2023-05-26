@@ -12,6 +12,12 @@
     <link href="~/Assets/admin/libs/fontawesome/font-awesome/css/all.min.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/toastr/toastr.js/toastr.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/angular-loading-bar/loading-bar.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/angularjs-dropdown-search/dropdown-select.css" rel="stylesheet" />
+    <!-- Ui-Select-->
+    <link href="~/Assets/admin/libs/selectize.js/css/selectize.default.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/angular-ui-select/select.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/select2/css/select2.css" rel="stylesheet" />
+    <link rel="shortcut icon" href="#">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Assets/admin/css/adminlte.min.css">
 </head>
@@ -26,6 +32,7 @@
     <script src="~/Assets/admin/js/adminlte.min.js"></script>
     <!-- Begin embed angularJS -->
     <script src="~/Assets/admin/libs/angularjs/angular.js"></script>
+    <script src="~/Assets/admin/libs/angular-sanitize/angular-sanitize.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-router/angular-ui-router.js"></script>
     <script src="~/Assets/admin/libs/toastr/toastr.js/toastr.min.js"></script>
     <script src="~/Assets/admin/libs/bootbox/bootbox.js/bootbox.js"></script>
@@ -35,11 +42,16 @@
     <script src="~/Assets/admin/libs/ng-ckeditor/ng-ckeditor/ng-ckeditor.js"></script>
     <script src="~/Assets/admin/libs/angular-local-storage/angular-local-storage.js"></script>
     <script src="~/Assets/admin/libs/angular-loading-bar/loading-bar.js"></script>
+    <script src="~/Assets/admin/libs/angularjs-dropdown-search/dropdown-select.js"></script>
+    <script src="~/Assets/admin/libs/angular-ui-select/select.js"></script>
+    <script src="~/Assets/admin/libs/select2/js/select2.js"></script>
 
     <script src="~/app/shared/modules/pharma.common.js"></script>
     <script src="~/app/shared/filters/statusFilter.js"></script>
+    <script src="~/app/shared/filters/propsFilter.js"></script>
     <script src="~/app/shared/services/apiService.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
+    <script src="~/app/shared/directives/asDateDirective.js"></script>
     <script src="~/app/shared/services/notificationService.js"></script>
     <script src="~/app/shared/services/authData.js"></script>
     <script src="~/app/shared/services/authenticationService.js"></script>
@@ -51,7 +63,8 @@
     <script src="~/app/components/posts/posts.module.js"></script>
     <script src="~/app/components/product_categories/productCategories.module.js"></script>
     <script src="~/app/components/products/products.module.js"></script>
-    <script src="~/app/components/subjects/subjects.mudule.js"></script>>
+    <script src="~/app/components/receiptNotes/receiptNotes.module.js"></script>
+    <script src="~/app/components/subjects/subjects.mudule.js"></script>
     <script src="~/app/components/units/units.module.js"></script>
     <script src="~/app/app.js"></script>
     <script src="~/app/components/home/rootController.js"></script>
@@ -71,6 +84,9 @@
     <script src="~/app/components/products/productAddController.js"></script>
     <script src="~/app/components/products/productListController.js"></script>
     <script src="~/app/components/products/productEditController.js"></script>
+    <script src="~/app/components/receiptNotes/receiptNoteListController.js"></script>
+    <script src="~/app/components/receiptNotes/receiptNoteEditController.js"></script>
+    <script src="~/app/components/receiptNotes/receiptNoteAddController.js"></script>
     <script src="~/app/components/subjects/subjectListController.js"></script>
     <script src="~/app/components/subjects/subjectEditController.js"></script>
     <script src="~/app/components/subjects/subjectAddController.js"></script>

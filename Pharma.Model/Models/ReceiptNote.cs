@@ -33,6 +33,7 @@ namespace Pharma.Model.Models
         [MaxLength(256)]
         public string PaymentMethod { set; get; }
         public int? StoreID { set; get; }
+        public string ReceiptNoteProductItems { set; get; }
         public virtual IEnumerable<ReceiptNoteItem> ReceiptNoteItems { set; get; }
 
         [ForeignKey("StoreID")]

@@ -45,6 +45,22 @@
     {
       "library": "angular-loading-bar@0.9.0",
       "destination": "Assets/admin/libs/angular-loading-bar/"
+    },
+    {
+      "library": "angular-ui-select@0.19.8",
+      "destination": "Assets/admin/libs/angular-ui-select/"
+    },
+    {
+      "library": "angular-sanitize@1.8.3",
+      "destination": "Assets/admin/libs/angular-sanitize/"
+    },
+    {
+      "library": "select2@4.0.13",
+      "destination": "Assets/admin/libs/select2/"
+    },
+    {
+      "library": "selectize.js@0.15.2",
+      "destination": "Assets/admin/libs/selectize.js/"
     }
   ]
 }

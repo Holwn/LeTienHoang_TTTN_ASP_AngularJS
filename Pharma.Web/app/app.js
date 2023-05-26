@@ -8,16 +8,18 @@
             'pharma.posts',
             'pharma.product_categories',
             'pharma.products',
+            'pharma.receiptNotes',
             'pharma.subjects',
             'pharma.units',
             'pharma.common'
         ])
         .config(config)
-        .config(configAuthentication).config(['$qProvider', function ($qProvider) {
+        .config(configAuthentication)
+        .config(['$qProvider', function ($qProvider) {
             $qProvider.errorOnUnhandledRejections(false);
-        }]);
+        }])
 
-    config.$inject = ['$stateProvider', '$urlRouterProvider','$httpProvider'];
+    config.$inject = ['$stateProvider', '$urlRouterProvider'];
 
     function config($stateProvider, $urlRouterProvider) {
         $stateProvider

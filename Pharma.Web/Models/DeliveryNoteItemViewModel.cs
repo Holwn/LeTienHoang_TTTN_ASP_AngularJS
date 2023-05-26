@@ -9,6 +9,7 @@ namespace Pharma.Web.Models
     {
         public int NoteID { set; get; }
         public int ProductID { set; get; }
+        public int? UnitID { set; get; }
         public decimal? BatchPrice { set; get; }
         public decimal? RetailPrice { set; get; }
         public int? Quantity { set; get; }

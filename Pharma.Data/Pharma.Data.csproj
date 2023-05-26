@@ -96,6 +96,18 @@
     <Compile Include="Migrations\202305211559285_UpdatePost.designer.cs">
       <DependentUpon>202305211559285_UpdatePost.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305241806485_UpdateReceiptNoteItem.cs" />
+    <Compile Include="Migrations\202305241806485_UpdateReceiptNoteItem.designer.cs">
+      <DependentUpon>202305241806485_UpdateReceiptNoteItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305250720582_UpdateReceiptAndDeliveryNoteItem.cs" />
+    <Compile Include="Migrations\202305250720582_UpdateReceiptAndDeliveryNoteItem.designer.cs">
+      <DependentUpon>202305250720582_UpdateReceiptAndDeliveryNoteItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305251506455_UpdateReceiptAndDeliveyNote.cs" />
+    <Compile Include="Migrations\202305251506455_UpdateReceiptAndDeliveyNote.designer.cs">
+      <DependentUpon>202305251506455_UpdateReceiptAndDeliveyNote.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PharmaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +175,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305211559285_UpdatePost.resx">
       <DependentUpon>202305211559285_UpdatePost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305241806485_UpdateReceiptNoteItem.resx">
+      <DependentUpon>202305241806485_UpdateReceiptNoteItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305250720582_UpdateReceiptAndDeliveryNoteItem.resx">
+      <DependentUpon>202305250720582_UpdateReceiptAndDeliveryNoteItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305251506455_UpdateReceiptAndDeliveyNote.resx">
+      <DependentUpon>202305251506455_UpdateReceiptAndDeliveyNote.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

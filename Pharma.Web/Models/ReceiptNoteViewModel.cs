@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharma.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -14,6 +15,7 @@ namespace Pharma.Web.Models
         public DateTime? Date { set; get; }
         public int SupplierID { set; get; }
         public string Description { set; get; }
+
         public int? VAT { set; get; }
         public decimal? Amount { set; get; }
         public decimal? PaymentAmount { set; get; }
@@ -24,6 +26,7 @@ namespace Pharma.Web.Models
         public DateTime? UpdatedDate { set; get; }
         public string UpdatedBy { set; get; }
         public bool Status { set; get; }
+        public string ReceiptNoteProductItems { set; get; }
         public virtual IEnumerable<ReceiptNoteItemViewModel> ReceiptNoteItems { set; get; }
         public virtual StoreViewModel Store { set; get; }
         public virtual SubjectViewModel Subject { set; get; }

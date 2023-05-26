@@ -57,7 +57,7 @@ namespace Pharma.Service
                         _tagRepository.Add(tag);
                     }
                     ProductTag productTag = new ProductTag();
-                    productTag.ProductID = product.ID;
+                    productTag.ProductID = productAdd.ID;
                     productTag.TagID = tagId;
 
                     _productTagRepository.Add(productTag);
