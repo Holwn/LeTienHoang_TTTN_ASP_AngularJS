@@ -5,12 +5,30 @@
 
     function productEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.product = {
-            Status: true,
         }
 
         $scope.UpdateProduct = UpdateProduct;
         $scope.GetSeoTitle = GetSeoTitle;
         $scope.moreImages = [];
+        $scope.productCategories = [];
+        $scope.units = [];
+
+        CKEDITOR.on("instanceReady", function (event) {
+            event.editor.on("beforeCommandExec", function (event) {
+                // Show the paste dialog for the paste buttons and right-click paste
+                if (event.data.name == "paste") {
+                    event.editor._.forcePasteDialog = true;
+                }
+                // Don't show the paste dialog for Ctrl+Shift+V
+                if (event.data.name == "pastetext" && event.data.commandData.from == "keystrokeHandler") {
+                    event.cancel();
+                }
+            })
+        });
+
+        $scope.ClearMoreImage = function () {
+            $scope.moreImages = [];
+        }
 
         $scope.ChooseMoreImage = function () {
             var finder = new CKFinder();
@@ -57,7 +75,11 @@
 
         function getProductCategories() {
             apiService.get('api/productcategory/getallparents', null, function (result) {
-                $scope.productCategories = result.data;
+                angular.forEach(result.data, function (item) {
+                    if (item.Status == true) {
+                        $scope.productCategories.push(item);
+                    }
+                })
             }, function () {
                 console.log('Get product category failed.');
             });
@@ -65,7 +87,11 @@
 
         function getUnits() {
             apiService.get('api/unit/getallparents', null, function (result) {
-                $scope.units = result.data;
+                angular.forEach(result.data, function (item) {
+                    if (item.Status == true) {
+                        $scope.units.push(item);
+                    }
+                })
             }, function () {
                 console.log('Get product category failed.');
             });

@@ -8,8 +8,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
-                    <li class="breadcrumb-item">Sản phẩm</li>
-                    <li class="breadcrumb-item"><a ui-sref="products">Sản phẩm</a></li>
+                    <li class="breadcrumb-item">Thuốc</li>
+                    <li class="breadcrumb-item"><a ui-sref="products">Danh mục thuốc</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
@@ -23,179 +23,235 @@
     <div class="card card-default">
         
         <form class="form-horizontal" novalidate name="frmUpdateProduct" role="form" ng-submit="UpdateProduct()">
-            <div class="card-body row">
+            <md-content>
+                <md-tabs md-dynamic-height md-border-bottom>
+                    <md-tab label="Thông tin">
+                        <md-content class="md-padding">
+                            <div class="card-body row">
+                                <div class="col-md-6">
 
-                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-4 col-form-label">Tên sản phẩm</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="256" required ng-change="GetSeoTitle()" name="name" ng-model="product.Name">
+                                            <span ng-show="frmUpdateProduct.name.$invalid && !frmUpdateProduct.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tên sản phẩm</span>
+                                            <span ng-show="frmUpdateProduct.name.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="decription" class="col-sm-4 col-form-label">Mô tả ngắn</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="500" name="decription" ng-model="product.Description">
+                                            <span ng-show="frmUpdateProduct.decription.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 500 ký tự</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="image" class="col-sm-4 col-form-label">Hình ảnh</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="256" name="image" ng-model="product.Image">
+                                            <span ng-show="frmUpdateProduct.image.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 256 ký tự</span>
+                                            <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="offset-sm-2 col-sm-4">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="status">
+                                                    <input type="checkbox" class="form-check-input" name="status" ng-model="product.Status" ng-checked="product.Status">Kích hoạt
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="prescription">
+                                                    <input type="checkbox" class="form-check-input" name="prescription" ng-model="product.Prescription" ng-checked="product.Prescription">Thuốc kê đơn
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="homeFlag">
+                                                    <input type="checkbox" class="form-check-input" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag">Hiện thị trang chủ
+                                                </label>
+                                            </div>
+                                            <div class="form-check">
+                                                <label class="form-check-label" for="hotFlag">
+                                                    <input type="checkbox" class="form-check-input" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag">Sản phẩm bán chạy
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
 
-                    <div class="form-group row">
-                        <label for="name" class="col-sm-4 col-form-label">Tên sản phẩm</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="256" required ng-change="GetSeoTitle()" name="name" ng-model="product.Name">
-                            <span ng-show="frmUpdateProduct.name.$invalid && !frmUpdateProduct.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tên sản phẩm</span>
-                            <span ng-show="frmUpdateProduct.name.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label for="alias" class="col-sm-4 col-form-label">Tiêu đề SEO</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="256" required name="alias" ng-model="product.Alias">
+                                            <span ng-show="frmUpdateProduct.alias.$invalid && !frmUpdateProduct.alias.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tiêu đề SEO</span>
+                                            <span ng-show="frmUpdateProduct.alias.$error.maxlength" class="badge badge-pill badge-danger">Tiêu đề SEO chỉ được 256 ký tự</span>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label for="decription" class="col-sm-4 col-form-label">Mô tả ngắn</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="500" name="decription" ng-model="product.Description">
-                            <span ng-show="frmUpdateProduct.decription.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 500 ký tự</span>
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label for="categoryId" class="col-sm-4 col-form-label">Danh mục</label>
+                                        <div class="col-sm-8">
+                                            <select name="categoryId" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
+                                                <option value="">--- Chọn danh mục ---</option>
+                                            </select>
+                                            <span ng-show="product.CategoryID==null" class="badge badge-pill badge-danger">Phải chọn danh mục</span>
+                                            <input type="hidden" name="categoryId" ng-model="product.CategoryID" />
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label for="batchPrice" class="col-sm-4 col-form-label">Giá sỉ</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="500" name="batchPrice" ng-model="product.BatchPrice">
-                        </div>
-                    </div>
+                                    <div class="form-group row">
+                                        <label for="moreImage" class="col-sm-4 col-form-label">Thêm ảnh</label>
+                                        <div class="col-sm-8">
+                                            <ul class="list-inline">
+                                                <li class="list-inline-item" ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
+                                            </ul>
+                                            <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh thêm</button>
+                                            <button type="button" class="btn btn-danger ml-3" ng-click="ClearMoreImage()"><i class="fas fa-light fa-trash"></i> All</button>
+                                        </div>
+                                    </div>
 
-                    <div class="form-group row">
-                        <label for="retailPrice" class="col-sm-4 col-form-label">Giá lẻ</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="500" name="retailPrice" ng-model="product.RetailPrice">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="contents" class="col-sm-4 col-form-label">Mô tả sản phẩm</label>
-                        <div class="col-sm-8">
-                            <textarea type="text" class="form-control" ckeditor="ckeditorOptions" ng-maxlength="2048" name="contents" ng-model="product.Contents"></textarea>
-                            <span ng-show="frmUpdateProduct.contents.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 2048 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="metaKeyword" class="col-sm-4 col-form-label">Meta Keyword</label>
-                        <div class="col-sm-8">
-                            <textarea type="text" class="form-control" ng-maxlength="256" name="metaKeyword" ng-model="product.MetaKeyword"></textarea>
-                            <span ng-show="frmUpdateProduct.metaKeyword.$error.maxlength" class="badge badge-pill badge-danger">Meta Keyword chỉ được 256 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="metaDecription" class="col-sm-4 col-form-label">Meta Decription</label>
-                        <div class="col-sm-8">
-                            <textarea type="text" class="form-control" ng-maxlength="256" name="metaDecription" ng-model="product.MetaDescription"></textarea>
-                            <span ng-show="frmUpdateProduct.metaDecription.$error.maxlength" class="badge badge-pill badge-danger">Meta Decription chỉ được 256 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <div class="offset-sm-2 col-sm-4">
-                            <div class="form-check">
-                                <label class="form-check-label" for="status">
-                                    <input type="checkbox" class="form-check-input" name="status" ng-model="product.Status" ng-checked="product.Status">Kích hoạt
-                                </label>
+                                </div>
                             </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="homeFlag">
-                                    <input type="checkbox" class="form-check-input" name="homeFlag" ng-model="product.HomeFlag" ng-checked="product.HomeFlag">Hiện thị trang chủ
-                                </label>
-                            </div>
-                            <div class="form-check">
-                                <label class="form-check-label" for="hotFlag">
-                                    <input type="checkbox" class="form-check-input" name="hotFlag" ng-model="product.HotFlag" ng-checked="product.HotFlag">Sản phẩm bán chạy
-                                </label>
-                            </div>
-                        </div>
-                    </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Thanh toán">
+                        <md-content class="md-padding">
+                            <div class="card-body row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="batchPrice" class="col-sm-4 col-form-label">Giá bán sỉ</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="500" name="batchPrice" ng-model="product.BatchPrice">
+                                        </div>
+                                    </div>
 
+                                    <div class="form-group row">
+                                        <label for="retailPrice" class="col-sm-4 col-form-label">Giá bán lẻ</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="500" name="retailPrice" ng-model="product.RetailPrice">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="tags" class="col-sm-4 col-form-label">Tags</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" name="tags" ng-model="product.Tags">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="barcode" class="col-sm-4 col-form-label">Barcode hàng</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="100" name="barcode" ng-model="product.Barcode">
+                                            <span ng-show="frmUpdateProduct.barcode.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 100 ký tự</span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="batchUnitID" class="col-sm-4 col-form-label">Đơn vị sỉ</label>
+                                        <div class="col-sm-8">
+                                            <select name="batchUnitID" required class="form-control" ng-model="product.BatchUnitID" ng-options="option.ID as option.Name for option in units">
+                                                <option value="">--- Chọn đơn vị ---</option>
+                                            </select>
+                                            <span ng-show="product.BatchUnitID==null" class="badge badge-pill badge-danger">Phải chọn đơn vị</span>
+                                            <input type="hidden" name="unitId" ng-model="product.BatchUnitID" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="contain" class="col-sm-4 col-form-label">Quy đổi đơn vị Sỉ - Lẻ (Sỉ - Trung gian Nếu có)</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" required name="contain" ng-model="product.Contain">
+                                            <span ng-show="frmUpdateProduct.contain.$invalid" class="badge badge-pill badge-danger">Phải chọn quy đổi</span>
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="miduleUnitID" class="col-sm-4 col-form-label">Đơn vị trung gian (Nếu có)</label>
+                                        <div class="col-sm-8">
+                                            <select name="miduleUnitID" class="form-control" ng-model="product.MiduleUnitID" ng-options="option.ID as option.Name for option in units">
+                                                <option value="">--- Chọn đơn vị ---</option>
+                                            </select>
+                                            <input type="hidden" name="miduleUnitID" ng-model="product.MiduleUnitID" />
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="containMidule" class="col-sm-4 col-form-label">Quy đổi đơn vị Trung gian - Lẻ (Nếu có)</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="500" name="containMidule" ng-model="product.ContainMidule">
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <label for="retailUnitID" class="col-sm-4 col-form-label">Đơn vị lẻ</label>
+                                        <div class="col-sm-8">
+                                            <select name="retailUnitID" required class="form-control" ng-model="product.RetailUnitID" ng-options="option.ID as option.Name for option in units">
+                                                <option value="">--- Chọn đơn vị ---</option>
+                                            </select>
+                                            <span ng-show="product.RetailUnitID==null" class="badge badge-pill badge-danger">Phải chọn đơn vị</span>
+                                            <input type="hidden" name="retailUnitID" ng-model="product.RetailUnitID" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                    <md-tab label="Thông tin thêm">
+                        <md-content class="md-padding">
+                            <div class="card-body row">
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="contents" class="col-sm-4 col-form-label">Mô tả sản phẩm</label>
+                                        <div class="col-sm-8">
+                                            <textarea type="text" class="form-control" ckeditor="ckeditorOptions" name="contents" ng-model="product.Contents"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        <label for="metaKeyword" class="col-sm-4 col-form-label">Meta Keyword</label>
+                                        <div class="col-sm-8">
+                                            <textarea type="text" class="form-control" ng-maxlength="256" name="metaKeyword" ng-model="product.MetaKeyword"></textarea>
+                                            <span ng-show="frmUpdateProduct.metaKeyword.$error.maxlength" class="badge badge-pill badge-danger">Meta Keyword chỉ được 256 ký tự</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="metaDecription" class="col-sm-4 col-form-label">Meta Decription</label>
+                                        <div class="col-sm-8">
+                                            <textarea type="text" class="form-control" ng-maxlength="256" name="metaDecription" ng-model="product.MetaDescription"></textarea>
+                                            <span ng-show="frmUpdateProduct.metaDecription.$error.maxlength" class="badge badge-pill badge-danger">Meta Decription chỉ được 256 ký tự</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="addressManufacturer" class="col-sm-4 col-form-label">Địa chỉ sản xuất</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="1024" name="addressManufacturer" ng-model="product.AddressManufacturer">
+                                            <span ng-show="frmUpdateProduct.addressManufacturer.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 1024 ký tự</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="manufacturer" class="col-sm-4 col-form-label">Hãng sản xuất</label>
+                                        <div class="col-sm-8">
+                                            <input type="text" class="form-control" ng-maxlength="1024" name="manufacturer" ng-model="product.Manufacturer">
+                                            <span ng-show="frmUpdateProduct.manufacturer.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 1024 ký tự</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </md-content>
+                    </md-tab>
+                </md-tabs>
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    <button ui-sref="products" class="btn btn-default">Hủy</button>
+                    <button type="submit" ng-disabled="frmUpdateProduct.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
                 </div>
-                <div class="col-md-6">
-
-                    <div class="form-group row">
-                        <label for="alias" class="col-sm-4 col-form-label">Tiêu đề SEO</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="256" required name="alias" ng-model="product.Alias">
-                            <span ng-show="frmUpdateProduct.alias.$invalid && !frmUpdateProduct.alias.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập tiêu đề SEO</span>
-                            <span ng-show="frmUpdateProduct.alias.$error.maxlength" class="badge badge-pill badge-danger">Tiêu đề SEO chỉ được 256 ký tự</span>
-                        </div>
-                    </div>
-
-
-                    <div class="form-group row">
-                        <label for="categoryId" class="col-sm-4 col-form-label">Danh mục</label>
-                        <div class="col-sm-8">
-                            <select name="categoryId" required class="form-control" ng-model="product.CategoryID" ng-options="option.ID as option.Name for option in productCategories">
-                                <option value="">--- Chọn danh mục ---</option>
-                            </select>
-                            <span ng-show="product.CategoryID==null" class="badge badge-pill badge-danger">Phải chọn danh mục</span>
-                            <input type="hidden" name="categoryId" ng-model="product.CategoryID" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="unitId" class="col-sm-4 col-form-label">Đơn vị lẻ</label>
-                        <div class="col-sm-8">
-                            <select name="unitId" required class="form-control" ng-model="product.UnitID" ng-options="option.ID as option.Name for option in units">
-                                <option value="">--- Chọn đơn vị ---</option>
-                            </select>
-                            <span ng-show="product.UnitID==null" class="badge badge-pill badge-danger">Phải chọn đơn vị</span>
-                            <input type="hidden" name="unitId" ng-model="product.UnitID" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="barcode" class="col-sm-4 col-form-label">Barcode hàng</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="100" name="barcode" ng-model="product.Barcode">
-                            <span ng-show="frmUpdateProduct.barcode.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 100 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="addressManufacturer" class="col-sm-4 col-form-label">Địa chỉ sản xuất</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="1024" name="addressManufacturer" ng-model="product.AddressManufacturer">
-                            <span ng-show="frmUpdateProduct.addressManufacturer.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 1024 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="manufacturer" class="col-sm-4 col-form-label">Hãng sản xuất</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="1024" name="manufacturer" ng-model="product.Manufacturer">
-                            <span ng-show="frmUpdateProduct.manufacturer.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 1024 ký tự</span>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="image" class="col-sm-4 col-form-label">Hình ảnh</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" ng-maxlength="256" name="image" ng-model="product.Image">
-                            <span ng-show="frmUpdateProduct.image.$error.maxlength" class="badge badge-pill badge-danger">Hình ảnh chỉ được 256 ký tự</span>
-                            <button type="button" class="btn btn-default" ng-click="ChooseImage()">Chọn ảnh</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="moreImage" class="col-sm-4 col-form-label">Thêm ảnh</label>
-                        <div class="col-sm-8">
-                            <ul class="list-inline">
-                                <li ng-repeat="img in moreImages"><img ng-src="{{img}}" width="100" /></li>
-                            </ul>
-                            <button type="button" class="btn btn-default" ng-click="ChooseMoreImage()">Chọn ảnh thêm</button>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="tags" class="col-sm-4 col-form-label">Tags</label>
-                        <div class="col-sm-8">
-                            <input type="text" class="form-control" name="tags" ng-model="product.Tags">
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                <button ui-sref="products" class="btn btn-default">Hủy</button>
-                <button type="submit" ng-disabled="frmUpdateProduct.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
-            </div>
-            <!-- /.card-footer -->
+                <!-- /.card-footer -->
+            </md-content>
         </form>
     </div>
     <!-- /.card -->

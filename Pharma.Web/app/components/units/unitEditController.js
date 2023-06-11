@@ -5,7 +5,6 @@
 
     function unitEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.unit = {
-            Status: true,
         }
 
         $scope.UpdateUnit = UpdateUnit;

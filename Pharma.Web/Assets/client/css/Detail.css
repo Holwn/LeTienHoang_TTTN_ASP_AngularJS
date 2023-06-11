@@ -1,0 +1,42 @@
+﻿.myfont h3,
+.myfont h2,
+.myfont h1,
+.myfont h4,
+.myfont h5,
+.myfont p {
+    font-family: "Times New Roman", Times, serif;
+}
+
+.dialog {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity linear 0.2s;
+}
+
+    .dialog:target {
+        visibility: visible;
+        opacity: 1;
+    }
+
+.overlay {
+    background-color: rgba(0,0,0,0.5);
+}
+
+.dialog-body {
+    max-width: 80em;
+    height: 80em;
+    position: relative;
+    padding: 16px;
+    background-color: #fff;
+    max-height: 80%;
+    overflow-y: scroll;
+}

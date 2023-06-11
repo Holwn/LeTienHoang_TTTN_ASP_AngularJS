@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Pharma.Web.Models.ProductViewModel>
+<div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+    @foreach (var product in Model)
+    {
+        var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+        <div class="col">
+            <div class="card shadow-sm" style="height:400px">
+                <a href="@url" class="text-decoration-none">
+                    <img class="bd-placeholder-img card-img-top" src="@product.Image" width="225" height="200" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" />
+                </a>
+                <div class="card-body h-100">
+                    <div class="d-flex flex-column position-static h-50">
+                        <a href="@url" class="text-decoration-none">
+                            <strong class="d-inline-block mb-2 text-primary">@product.Name</strong>
+                        </a>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center h-50">
+                        <div class="btn-group">
+                            <a href="@url" class="text-decoration-none">
+                                <span class="btn btn-sm btn-outline-danger">@product.BatchPrice đ</span>
+                            </a>
+                        </div>
+                        <small class="text-muted"> @(product.Quantity>0?"Còn hàng":"Hết hàng")</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>

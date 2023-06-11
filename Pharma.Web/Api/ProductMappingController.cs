@@ -43,6 +43,21 @@ namespace Pharma.Web.Api
             });
         }
 
+        [Route("loadproductmapping")]
+        [HttpGet]
+        [AllowAnonymous]
+        public HttpResponseMessage Load(HttpRequestMessage request)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                _productMappingService.LoadingProductMapping();
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK);
+
+                return response;
+            });
+        }
+
         [Route("getbyid/{id:int}")]
         [HttpGet]
         public HttpResponseMessage GetById(HttpRequestMessage request, int id)
@@ -102,8 +117,8 @@ namespace Pharma.Web.Api
                 else
                 {
                     var dbProductMapping = _productMappingService.GetById(ProductMappingVm.ID);
-                    dbProductMapping.UpdateProductMapping(ProductMappingVm);
 
+                    dbProductMapping.UpdateProductMapping(ProductMappingVm);
                     _productMappingService.Update(dbProductMapping);
                     _productMappingService.Save();
 

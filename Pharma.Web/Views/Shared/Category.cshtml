@@ -1,37 +1,41 @@
-﻿
-<div class="categories">
-    <h2>Categories</h2>
-    <ul class="cate">
-        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fruits And Vegetables</a></li>
-        <ul>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cuts & Sprouts</a></li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flowers</a></li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Herbs & Seasonings</a></li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Fresh Vegetables</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>International Vegetables</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Fruits & Vegetables</a></li>
-        </ul>
-        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Grocery & Staples</a></li>
-        <ul>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dals & Pulses</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Dry Fruits</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Edible Oils & Ghee</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Flours & Sooji</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Masalas & Spices</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Organic Staples</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Rice & Rice Products</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Salt, Sugar & Jaggery</a></li>
-        </ul>
-        <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>PersonalCare</a></li>
-        <ul>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Baby Care</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Cosmetics</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Deos & Perfumes</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Skin Care</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Sanitary Needs</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Oral Care</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Personal Hygiene</a> </li>
-            <li><a href="products.html"><i class="fa fa-arrow-right" aria-hidden="true"></i>Shaving Needs</a></li>
-        </ul>
+﻿@model IEnumerable<Pharma.Web.Models.ProductCategoryViewModel>
+
+<div class="flex-shrink-0 bg-white" style="width: 320px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap" /></svg>
+        <span class="fs-5 text-uppercase fw-bold">Loại Dược phẩm</span>
+    </a>
+    <ul class="list-unstyled p-0">
+        @foreach (var category in Model.Where(x => x.ParentID == null))
+        {
+            var url = "/" + category.Alias + ".pc-" + category.ID + ".html";
+            var childCategories = Model.Where(x => x.ParentID == category.ID);
+        <li class="mb-1 text-left">
+            @if (childCategories.Count() > 0)
+            {
+                <a href="@url" class="btn btn-toggle rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#@category.Alias" aria-expanded="false">
+                    @category.Name
+                </a>
+                <div class="collapse" id="@category.Alias">
+                    <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                        @foreach (var childCategory in childCategories)
+                        {
+                            var childUrl = "/" + childCategory.Alias + ".pc-" + childCategory.ID + ".html";
+                            <li>
+                                <a href="@childUrl" class="link-dark d-inline-flex text-decoration-none rounded">@childCategory.Name</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+            else
+            {
+                <a href="@url" class="btn rounded border-0">
+                    @category.Name
+                </a>
+            }
+        </li>
+        }
+        <li class="border-top my-3"></li>
     </ul>
 </div>

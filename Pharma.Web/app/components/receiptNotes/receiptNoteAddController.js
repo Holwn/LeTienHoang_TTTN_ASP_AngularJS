@@ -1,4 +1,6 @@
-﻿(function (app) {
+﻿/// <reference path="../../../assets/admin/libs/angularjs/angular.min.js" />
+
+(function (app) {
     app.controller('receiptNoteAddController', receiptNoteAddController);
 
     receiptNoteAddController.$inject = ['apiService', '$scope', 'notificationService', '$state', 'commonService', '$http','$filter'];
@@ -52,23 +54,21 @@
         $scope.AddProductToTable = function (item) {
             stt = stt + 1;
             angular.forEach($scope.units, function (unit) {
-                if (unit.ID == item.UnitID) {
+                if (unit.ID == item.BatchUnitID) {
                     $scope.productItems.UnitName = unit.Name;
-                    $scope.productItems.Contain = unit.Contain;
                 }
             })
             $scope.productItems.Stt = stt;
             $scope.productItems.Name = item.Name;
             $scope.productItems.ID = item.ID;
-            $scope.productItems.UnitID = item.UnitID;
+            $scope.productItems.UnitID = item.BatchUnitID;
             $scope.productItems.Quantity = 0;
-            $scope.productItems.RetailPrice = 0;
+            $scope.productItems.Price = item.BatchPrice;
             $scope.productItems.VAT = 0;
             $scope.productItems.Discount = 0;
             $scope.productItems.BatchNumber = '';
             $scope.productItems.ExpiredDate = 0;
             $scope.productItems.Amount = 0;
-
 
             $scope.receiptItems.push($scope.productItems);
             $scope.productItems = {};
@@ -91,11 +91,11 @@
         }
 
         $scope.ChangeItem = function (item) {
-            item.RetailPrice = new Number(item.RetailPrice);
+            item.Price = new Number(item.Price);
             item.Quantity = new Number(item.Quantity);
-            if (item.Quantity != NaN && item.RetailPrice != NaN) {
-                var amountItem = Math.round(item.Quantity * item.RetailPrice);
-                item.Amount = amountItem + Math.round(item.VAT * amountItem / 100) + Math.round(item.Discount * amountItem / 100);
+            if (item.Quantity != NaN && item.Price != NaN) {
+                var amountItem = Math.round(item.Quantity * item.Price);
+                item.Amount = amountItem + Math.round(item.VAT * amountItem / 100) - Math.round(item.Discount * amountItem / 100);
                 updateAmountNote();
             }
         }
@@ -120,14 +120,14 @@
         function AddReceiptNote() {
 
             apiService.post('api/receiptnote/create', $scope.receiptNote, function (result) {
-                notificationService.displaySuccess(result.data.Name + ' đã được thêm mới');
-                console.log(result);
+                notificationService.displaySuccess(result.data.Code + ' đã được thêm mới');
+
                 AddReceiptNoteItemInReceiptNote(result.data);
             }, function (error) {
                 notificationService.displayError('Tạo phiếu nhập mới thất bại');
             });
 
-            /*$state.go('receiptNotes');*/
+            $state.go('receiptNotes');
         }
 
         function AddReceiptNoteItemInReceiptNote(resultData) {
@@ -135,8 +135,7 @@
                 var receiptNoteItem = {};
                 receiptNoteItem.NoteID = resultData.ID;
                 receiptNoteItem.ProductID = receiptItem.ID;
-                receiptNoteItem.BatchPrice = receiptItem.Contain == 0 ? receiptItem.RetailPrice : receiptItem.RetailPrice * receiptItem.Contain;
-                receiptNoteItem.RetailPrice = receiptItem.RetailPrice;
+                receiptNoteItem.Price = receiptItem.Price;
                 receiptNoteItem.VAT = receiptItem.VAT;
                 receiptNoteItem.Discount = receiptItem.Discount;
                 receiptNoteItem.BatchNumber = receiptItem.BatchNumber;
@@ -150,29 +149,18 @@
 
         function AddReceiptNoteItem(receiptNoteItem) {
             apiService.post('api/receiptnoteitem/create', receiptNoteItem, function (result) {
-                console.log(result);
-                AddProductMapping(receiptNoteItem);
+                
             }, function (error) {
                 notificationService.displayError('Tạo sản phẩm trong phiếu nhập mới thất bại');
             });
+            $scope.LoadProductMapping();
         }
 
-        function AddProductMapping(receiptNoteItem) {
-            var productMapping = {};
-            productMapping.ProductID = receiptNoteItem.ProductID;
-            productMapping.BatchInPrice = receiptNoteItem.BatchPrice;
-            productMapping.BatchInDate = $scope.receiptNote.Date;
-            productMapping.RetailInPrice = receiptNoteItem.RetailPrice;
-            productMapping.RetailInDate = $scope.receiptNote.Date;
-            productMapping.BatchNumber = receiptNoteItem.BatchNumber;
-            productMapping.ExpiredDate = receiptNoteItem.ExpiredDate;
-            productMapping.Quantity = receiptNoteItem.Quantity;
-            productMapping.UnitID = receiptNoteItem.UnitID;
-
-            apiService.post('api/productmapping/create', productMapping, function (result) {
-                console.log(result);
+        $scope.LoadProductMapping = function() {
+            apiService.get('api/productmapping/loadproductmapping', null, function (result) {
+                notificationService.displaySuccess('Chạy kho thành công');
             }, function (error) {
-                notificationService.displayError('Tạo kho lưu trữ mới thất bại');
+                notificationService.displayError('Chạy kho thất bại');
             });
         }
 

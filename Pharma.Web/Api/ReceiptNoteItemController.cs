@@ -59,6 +59,22 @@ namespace Pharma.Web.Api
             });
         }
 
+        [Route("getall")]
+        [HttpGet]
+        public HttpResponseMessage Get(HttpRequestMessage request, int noteId)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                var list = _receiptNoteItemService.GetAllByNoteId(noteId);
+
+                var listReceiptNoteItemVm = AutoMapperConfiguration.InitializeAutomapper().Map<IEnumerable<ReceiptNoteItemViewModel>>(list);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listReceiptNoteItemVm);
+
+                return response;
+            });
+        }
+
         [Route("create")]
         [HttpPost]
         [AllowAnonymous]
@@ -101,7 +117,7 @@ namespace Pharma.Web.Api
                 }
                 else
                 {
-                    var dbReceiptNoteItem = _receiptNoteItemService.GetById(ReceiptNoteItemVm.NoteID);
+                    var dbReceiptNoteItem = _receiptNoteItemService.GetByNoteId(ReceiptNoteItemVm.NoteID,ReceiptNoteItemVm.ProductID);
                     dbReceiptNoteItem.UpdateReceiptNoteItem(ReceiptNoteItemVm);
 
                     _receiptNoteItemService.Update(dbReceiptNoteItem);

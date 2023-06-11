@@ -10,9 +10,12 @@ namespace Pharma.Web.Mappings
         {
             var config = new MapperConfiguration(cfg =>
               {
+                  cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
                   cfg.CreateMap<DeliveryNoteItem, DeliveryNoteItemViewModel>();
                   cfg.CreateMap<DeliveryNote, DeliveryNoteViewModel>();
                   cfg.CreateMap<Footer, FooterViewModel>();
+                  cfg.CreateMap<NoteBook, NoteBookViewModel>();
+                  cfg.CreateMap<Page, PageViewModel>();
                   cfg.CreateMap<PostCategory, PostCategoryViewModel>();
                   cfg.CreateMap<PostTag, PostTagViewModel>();
                   cfg.CreateMap<Post, PostViewModel>();
@@ -22,6 +25,7 @@ namespace Pharma.Web.Mappings
                   cfg.CreateMap<Product, ProductViewModel>();
                   cfg.CreateMap<ReceiptNoteItem, ReceiptNoteItemViewModel>();
                   cfg.CreateMap<ReceiptNote, ReceiptNoteViewModel>();
+                  cfg.CreateMap<Slide, SlideViewModel>();
                   cfg.CreateMap<StoreRole, StoreRoleViewModel>();
                   cfg.CreateMap<Store, StoreViewModel>();
                   cfg.CreateMap<Subject, SubjectViewModel>();

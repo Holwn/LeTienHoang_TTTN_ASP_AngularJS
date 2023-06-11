@@ -1,0 +1,118 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật liên hệ: {{contactdetail.Name}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Chủ thể</li>
+                    <li class="breadcrumb-item"><a ui-sref="contactdetails">Liên hệ</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="card card-default">
+        
+        <form class="form-horizontal" novalidate name="frmUpdateContactdetail" role="form" ng-submit="UpdateContactdetail()">
+            <div class="card-body row">
+
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-4 col-form-label">Chủ đề liên hệ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="contactdetail.Name">
+                            <span ng-show="frmUpdateContactdetail.name.$invalid && !frmUpdateContactdetail.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập Chủ đề liên hệ</span>
+                            <span ng-show="frmUpdateContactdetail.name.$error.maxlength" class="badge badge-pill badge-danger">Chủ đề liên hệ chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="phone" class="col-sm-4 col-form-label">Số điện thoại</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="50" name="phone" ng-model="contactdetail.Phone">
+                            <span ng-show="frmUpdateContactdetail.phone.$error.maxlength" class="badge badge-pill badge-danger">Số điện thoại chỉ được 50 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="email" class="col-sm-4 col-form-label">Email</label>
+                        <div class="col-sm-8">
+                            <input type="email" class="form-control" ng-maxlength="256" name="email" ng-model="contactdetail.Email">
+                            <span ng-show="frmUpdateContactdetail.email.$error.maxlength" class="badge badge-pill badge-danger">Email chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="address" class="col-sm-4 col-form-label">Địa chỉ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="256" name="address" ng-model="contactdetail.Address">
+                            <span ng-show="frmUpdateContactdetail.address.$error.maxlength" class="badge badge-pill badge-danger">Địa chỉ chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="website" class="col-sm-4 col-form-label">Trang web</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="250" name="website" ng-model="contactdetail.Website">
+                            <span ng-show="frmUpdateContactdetail.website.$error.maxlength" class="badge badge-pill badge-danger">Trang web chỉ được 250 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-4">
+                            <div class="form-check">
+                                <label class="form-check-label" for="status">
+                                    <input type="checkbox" class="form-check-input" name="status" ng-model="contactdetail.Status" ng-checked="contactdetail.Status">Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="other" class="col-sm-4 col-form-label">Thông tin khác</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="other" ng-model="contactdetail.Other">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="lat" class="col-sm-4 col-form-label">Kinh độ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="lat" ng-model="contactdetail.Lat">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="lng" class="col-sm-4 col-form-label">Vĩ độ</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" name="lng" ng-model="contactdetail.Lng">
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button ui-sref="contactdetails" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmUpdateContactdetail.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

@@ -28,6 +28,7 @@
             }
             apiService.del('api/receiptnote/deletemulti', config, function (result) {
                 notificationService.displaySuccess('Xóa thành công ' + result.data + ' bản ghi.');
+                $scope.LoadProductMapping();
                 search();
             }, function (error) {
                 notificationService.displayError('Xóa không thành công');
@@ -68,10 +69,19 @@
                 };
                 apiService.del('api/receiptnote/delete', config, function () {
                     notificationService.displaySuccess('Xóa thành công');
+                    $scope.LoadProductMapping();
                     search();
                 }, function () {
                     notificationService.displayError('Xóa không thành công');
                 });
+            });
+        }
+
+        $scope.LoadProductMapping = function () {
+            apiService.get('api/productmapping/loadproductmapping', null, function (result) {
+                notificationService.displaySuccess('Chạy kho thành công');
+            }, function (error) {
+                notificationService.displayError('Chạy kho thất bại');
             });
         }
 

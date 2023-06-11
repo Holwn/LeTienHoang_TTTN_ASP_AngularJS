@@ -13,10 +13,12 @@
     <link href="~/Assets/admin/libs/toastr/toastr.js/toastr.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/angular-loading-bar/loading-bar.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/angularjs-dropdown-search/dropdown-select.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/angular-ui-bootstrap/ui-bootstrap-csp.css" rel="stylesheet" />
     <!-- Ui-Select-->
     <link href="~/Assets/admin/libs/selectize.js/css/selectize.default.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/angular-ui-select/select.css" rel="stylesheet" />
     <link href="~/Assets/admin/libs/select2/css/select2.css" rel="stylesheet" />
+    <link href="~/Assets/admin/libs/angular-material/angular-material.min.css" rel="stylesheet" />
     <link rel="shortcut icon" href="#">
     <!-- Theme style -->
     <link rel="stylesheet" href="~/Assets/admin/css/adminlte.min.css">
@@ -45,6 +47,14 @@
     <script src="~/Assets/admin/libs/angularjs-dropdown-search/dropdown-select.js"></script>
     <script src="~/Assets/admin/libs/angular-ui-select/select.js"></script>
     <script src="~/Assets/admin/libs/select2/js/select2.js"></script>
+    <script src="~/Assets/admin/libs/moment.js/moment.min.js"></script>
+    <script src="~/Assets/admin/libs/angular-ui-bootstrap/ui-bootstrap.min.js"></script>
+    <script src="~/Assets/admin/libs/angular-ui-bootstrap/ui-bootstrap-tpls.min.js"></script>
+    <script src="~/Assets/admin/libs/datepicker/datepicker.js"></script>
+    <script src="~/Assets/admin/libs/angular-aria/angular-aria.min.js"></script>
+    <script src="~/Assets/admin/libs/angular-animate/angular-animate.min.js"></script>
+    <script src="~/Assets/admin/libs/angular-messages/angular-messages.min.js"></script>
+    <script src="~/Assets/admin/libs/angular-material/angular-material.min.js"></script>
 
     <script src="~/app/shared/modules/pharma.common.js"></script>
     <script src="~/app/shared/filters/statusFilter.js"></script>
@@ -52,26 +62,44 @@
     <script src="~/app/shared/services/apiService.js"></script>
     <script src="~/app/shared/directives/pagerDirective.js"></script>
     <script src="~/app/shared/directives/asDateDirective.js"></script>
+    <script src="~/app/shared/directives/asDateTeduDirective.js"></script>
     <script src="~/app/shared/services/notificationService.js"></script>
     <script src="~/app/shared/services/authData.js"></script>
     <script src="~/app/shared/services/authenticationService.js"></script>
     <script src="~/app/shared/services/loginService.js"></script>
     <script src="~/app/shared/services/commonService.js"></script>
 
+    <script src="~/app/components/deliveryNotes/deliveryNotes.module.js"></script>
+    <script src="~/app/components/contactdetails/contactdetails.module.js"></script>
     <script src="~/app/components/footers/footers.module.js"></script>
+    <script src="~/app/components/noteBooks/noteBooks.module.js"></script>
+    <script src="~/app/components/pages/pages.module.js"></script>
     <script src="~/app/components/post_categories/postCategories.module.js"></script>
     <script src="~/app/components/posts/posts.module.js"></script>
     <script src="~/app/components/product_categories/productCategories.module.js"></script>
     <script src="~/app/components/products/products.module.js"></script>
     <script src="~/app/components/receiptNotes/receiptNotes.module.js"></script>
-    <script src="~/app/components/subjects/subjects.mudule.js"></script>
+    <script src="~/app/components/slides/slides.module.js"></script>
+    <script src="~/app/components/subjects/subjects.module.js"></script>
     <script src="~/app/components/units/units.module.js"></script>
     <script src="~/app/app.js"></script>
     <script src="~/app/components/home/rootController.js"></script>
 
+    <script src="~/app/components/deliveryNotes/deliveryNoteAddController.js"></script>
+    <script src="~/app/components/deliveryNotes/deliveryNoteEditController.js"></script>
+    <script src="~/app/components/deliveryNotes/deliveryNoteListController.js"></script>
+    <script src="~/app/components/contactdetails/contactdetailAddController.js"></script>
+    <script src="~/app/components/contactdetails/contactdetailEditController.js"></script>
+    <script src="~/app/components/contactdetails/contactdetailListController.js"></script>
     <script src="~/app/components/footers/footerListController.js"></script>
     <script src="~/app/components/footers/footerEditController.js"></script>
     <script src="~/app/components/footers/footerAddController.js"></script>
+    <script src="~/app/components/noteBooks/noteBookAddController.js"></script>
+    <script src="~/app/components/noteBooks/noteBookEditController.js"></script>
+    <script src="~/app/components/noteBooks/noteBookListController.js"></script>
+    <script src="~/app/components/pages/pageAddController.js"></script>
+    <script src="~/app/components/pages/pageEditController.js"></script>
+    <script src="~/app/components/pages/pageListController.js"></script>
     <script src="~/app/components/post_categories/postCategoryListController.js"></script>
     <script src="~/app/components/post_categories/postCategoryAddController.js"></script>
     <script src="~/app/components/post_categories/postCategoryEditController.js"></script>
@@ -87,6 +115,9 @@
     <script src="~/app/components/receiptNotes/receiptNoteListController.js"></script>
     <script src="~/app/components/receiptNotes/receiptNoteEditController.js"></script>
     <script src="~/app/components/receiptNotes/receiptNoteAddController.js"></script>
+    <script src="~/app/components/slides/slideAddController.js"></script>
+    <script src="~/app/components/slides/slideEditController.js"></script>
+    <script src="~/app/components/slides/slideListController.js"></script>
     <script src="~/app/components/subjects/subjectListController.js"></script>
     <script src="~/app/components/subjects/subjectEditController.js"></script>
     <script src="~/app/components/subjects/subjectAddController.js"></script>

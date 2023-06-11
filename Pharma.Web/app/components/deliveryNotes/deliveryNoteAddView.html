@@ -1,0 +1,191 @@
+﻿<style>
+    .select2 > .select2-choice.ui-select-match {
+        /* Because of the inclusion of Bootstrap */
+        height: 29px;
+    }
+</style>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Thêm mới phiếu xuất</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Nhập - Xuất</li>
+                    <li class="breadcrumb-item"><a ui-sref="deliveryNotes">Phiếu nhập</a></li>
+                    <li class="breadcrumb-item active">Thêm mới</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="card card-default">
+
+        <form class="form-horizontal" novalidate name="frmAddDeliveryNote" role="form" ng-submit="AddDeliveryNote()">
+            <div class="card-body row">
+
+                <div class="col-md-3 card p-3">
+
+                    <div class="form-group bg-gradient-gray">
+                        <h5 class="text-center">Thông tin phiếu</h5>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="customerId" class="col-sm-4 col-form-label">Tên khách hàng</label>
+                        <div class="col-sm-8">
+                            <ui-select ng-model="subject" theme="selectize" style="width: 100%;" ng-change="AddProductToTable(subject)">
+                                <ui-select-match placeholder="Chọn khách hàng ...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="subject in subjects |filter: $select.search">
+                                    <div ng-bind-html="subject.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="dateNote" class="col-sm-4 col-form-label">Ngày hóa đơn</label>
+                        <div class="col-sm-8 input-group">
+                            <input type="text" class="form-control" ng-model="formattedDate" readonly>
+                            <input type="date" name="dateNote" ng-model="deliveryNote.Date" as-date-tedu style="width:25px;height:30px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="code" class="col-sm-4 col-form-label">Mã hóa đơn</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="256" name="code" ng-model="deliveryNote.Code">
+                            <span ng-show="frmAddDeliveryNote.code.$error.maxlength" class="badge badge-pill badge-danger">Mã hóa đơn chỉ được 128 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="decription" class="col-sm-4 col-form-label">Mô tả ngắn</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" class="form-control" ng-maxlength="500" name="decription" ng-model="deliveryNote.Description"></textarea>
+                            <span ng-show="frmAddDeliveryNote.decription.$error.maxlength" class="badge badge-pill badge-danger">Mô tả ngắn chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="amount" class="col-sm-4 col-form-label">Tổng tiền</label>
+                        <div class="col-sm-8 input-group">
+                            <input type="text" class="form-control" name="amount" ng-change="ChangeDeliveryNote()" ng-model="deliveryNote.Amount" disabled>
+                            <span class="input-group-text" id="basic-addon1">VND</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="vat" class="col-sm-4 col-form-label">Thuế</label>
+                        <div class="col-sm-8 input-group">
+                            <input type="number" class="form-control" ng-change="ChangeDeliveryNote()" name="vat" ng-model="deliveryNote.VAT">
+                            <span class="input-group-text pl-4 pr-3" id="basic-addon1">%</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="paymentAmount" class="col-sm-4 col-form-label">Tổng đơn</label>
+                        <div class="col-sm-8 input-group">
+                            <input type="text" class="form-control" name="paymentAmount" ng-model="deliveryNote.PaymentAmount" disabled>
+                            <span class="input-group-text" id="basic-addon1">VND</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="paymentMethod" class="col-sm-4 col-form-label">Phương thức thanh toán</label>
+                        <div class="col-sm-8">
+                            <select name="paymentMethod" required class="form-control" ng-model="deliveryNote.PaymentMethod" ng-options="option.Alias as option.Name for option in TypePayments">
+                            </select>
+                            <span ng-show="deliveryNote.PaymentMethod==null" class="badge badge-pill badge-danger">Phải chọn phương thức thanh toán</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-8">
+                            <div class="form-check">
+                                <label class="form-check-label" for="status">
+                                    <input type="checkbox" class="form-check-input" name="status" ng-model="deliveryNote.Status" ng-checked="deliveryNote.Status">Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-9 p-2 bg-gray-light">
+                    <div class="row col-md-12 form-group">
+                        <label for="product" class="col-sm-4 col-form-label">Chọn sản xuất</label>
+                        <div class="col-ms-4">
+                            <ui-select ng-model="product" theme="selectize" style="width: 100%;" ng-change="AddProductToTable(product)">
+                                <ui-select-match placeholder="Chọn sản phẩm nhập...">{{$select.selected.Name}}</ui-select-match>
+                                <ui-select-choices repeat="product in products |filter: $select.search">
+                                    <div ng-bind-html="product.Name | highlight: $select.search"></div>
+                                </ui-select-choices>
+                            </ui-select>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table table-striped table-bordered display dataTable no-footer table-hover">
+                            <thead>
+                                <tr class="table-dark table-active">
+                                    <th scope="col" width="3%">#</th>
+                                    <th scope="col" width="3%">STT</th>
+                                    <th scope="col" width="25%">Tên sản phẩm</th>
+                                    <th scope="col" width="10%">Đơn vị (lẻ)</th>
+                                    <th scope="col" width="14%">Số lượng</th>
+                                    <th scope="col" width="15%">Đơn giá (lẻ)</th>
+                                    <th scope="col" width="5%">VAT & C.Khấu</th>
+                                    <th scope="col" width="15%">Số lô & Hạn dùng</th>
+                                    <th scope="col" width="10%">Tổng tiền</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="item in deliveryItems">
+                                    <th scope="row"><a style="color:red" ng-click="RemoveItem(item)"><i class="fa-sharp fa-solid fa-trash"></i></a></th>
+                                    <td>{{item.Stt}}</td>
+                                    <td>{{item.Name}}</td>
+                                    <td>
+                                        {{item.UnitName}} ({{item.QuantityMapping}})
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="quantity" ng-change="ChangeItem(item)" ng-model="item.Quantity">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" name="retailprice" ng-change="ChangeItem(item)" ng-model="item.Price">
+                                        (sỉ: {{item.PriceMapping}})
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" ng-change="ChangeItem(item)" name="vat" ng-model="item.VAT">
+                                        <input type="text" class="form-control" ng-change="ChangeItem(item)" name="discount" ng-model="item.Discount">
+                                    </td>
+                                    <td>
+                                        <input type="text" class="form-control" required name="batchnumber" ng-model="item.BatchNumber">
+                                        <input type="text" class="form-control" required name="expireddate" ng-model="item.ExpiredDate" as-date disabled>
+                                        <span ng-show="item.BatchNumber=='' || item.ExpiredDate==0" class="badge badge-pill badge-danger">Phải nhập số lô - hạn dùng</span>
+                                    </td>
+                                    <td>{{item.Amount}}</td>
+                                </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button ui-sref="deliveryNotes" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmAddDeliveryNote.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

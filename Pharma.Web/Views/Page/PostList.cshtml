@@ -1,0 +1,33 @@
+﻿@model IEnumerable<Pharma.Web.Models.PostViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            @{ Html.RenderAction("Category", "Page");}
+            @{ Html.RenderAction("Category", "Home");}
+        </div>
+        <div class="album bg-light col-md-8">
+            <div class="container">
+                @foreach (var post in Model.Where(x => x.HomeFlag == true && x.Status))
+                {
+                    <div class="myfont row m-2 border shadow">
+                        <div class="col-md-4">
+                            <a href="/tin-tuc/@(post.Alias).html" class="text-decoration-none">
+                                <img alt="@post.Name" src="@post.Image" class="image img-fluid" />
+                            </a>
+                        </div>
+                        <div class="col-md-6 py-3">
+                            <a href="/tin-tuc/@(post.Alias).html" class="text-decoration-none text-dark">
+                                <h4 class="fw-bold">@post.Name</h4>
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

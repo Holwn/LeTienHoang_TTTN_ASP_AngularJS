@@ -1,0 +1,115 @@
+﻿@model Pharma.Web.Infrastructure.Core.PaginationSet<Pharma.Web.Models.ProductViewModel>
+
+@{
+    var tag = (Pharma.Web.Models.TagViewModel)ViewBag.Tag;
+    ViewBag.Title = "Kết quả tìm kiếm cho tag " + tag.Name;
+    Layout = "~/Views/Shared/Layouts.cshtml";
+
+}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            @{ Html.RenderAction("Category", "Home");}
+        </div>
+        <div class="album bg-light col-md-8">
+            <div class="">
+                <h3 class="p-2 text-uppercase" style="font-family:Gill Sans, sans-serif;">@tag.Name  - <span>@Model.TotalCount thuốc</span></h3>
+            </div>
+            <div class="container">
+                @if (Model.Count > 0)
+                {
+                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                        @foreach (var product in Model.Items)
+                        {
+                            var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                            <div class="col">
+                                <div class="card shadow-sm" style="height:400px">
+                                    <a href="@url" class="text-decoration-none">
+                                        <img class="bd-placeholder-img card-img-top" alt="@product.Name" src="@product.Image" width="225" height="200" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" />
+                                    </a>
+                                    <div class="card-body h-100">
+                                        <div class="d-flex flex-column position-static h-50">
+                                            <a href="@url" class="text-decoration-none">
+                                                <strong class="d-inline-block mb-2 text-primary">@product.Name</strong>
+                                            </a>
+                                        </div>
+                                        <div class="d-flex justify-content-between align-items-center h-50">
+                                            <div class="btn-group">
+                                                <a href="@url" class="text-decoration-none">
+                                                    <span class="btn btn-sm btn-outline-danger">@product.BatchPrice đ</span>
+                                                </a>
+                                            </div>
+                                            <small class="text-muted"> @(product.Quantity>0?"Còn hàng":"Hết hàng")</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        }
+
+                    </div>
+                    <div class="m-4">
+                        @if (Model.TotalPages > 1)
+                        {
+                            var startPageIndex = Math.Max(1, Model.Page - Model.MaxPage / 2);
+                            var endPageIndex = Math.Min(Model.TotalPages, Model.Page + Model.MaxPage / 2);
+
+                            <nav aria-label="Page navigation example" class="nav-pills">
+                                <ul class="pagination">
+                                    @if (Model.Page > 1)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link text-dark" href="?page=1" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link text-dark" href="?page=@(Model.Page-1)" aria-label="Previous">
+                                                <span aria-hidden="true">&laquo;</span>
+                                            </a>
+                                        </li>
+                                    }
+
+                                    @for (int i = startPageIndex; i <= endPageIndex; i++)
+                                    {
+                                        if (Model.Page == i)
+                                        {
+                                            <li class="page-item nav-pills"><a class="active nav-link page-link text-dark" href="?page=@i" title="Trang @i">@i</a></li>
+                                        }
+                                        else
+                                        {
+                                            <li class="page-item">
+                                                <a class="page-link text-dark" href="?page=@i" title="Trang @i">@i</a>
+                                            </li>
+                                        }
+                                    }
+                                    @if (Model.Page < Model.TotalPages)
+                                    {
+                                        <li class="page-item">
+                                            <a class="page-link text-dark" href="?page=@(Model.Page+1)" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                        <li class="page-item">
+                                            <a class="page-link text-dark" href="?page=@Model.TotalPages" aria-label="Next">
+                                                <span aria-hidden="true">&raquo;</span>
+                                            </a>
+                                        </li>
+                                    }
+                                </ul>
+                            </nav>
+                        }
+                    </div>
+
+                }
+                else
+                {
+                    <div class="text-danger text-center">
+                        <p>Không có loại dược phẩm này</p>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</div>

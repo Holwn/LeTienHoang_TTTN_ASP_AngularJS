@@ -1,0 +1,44 @@
+﻿@model IEnumerable<Pharma.Web.Models.PostViewModel>
+@{
+    var postCategories = (IEnumerable<Pharma.Web.Models.PostCategoryViewModel>)ViewBag.PostCategories;
+}
+
+<div class="flex-shrink-0 bg-white" style="width: 320px;">
+    <a href="/" class="d-flex align-items-center pb-3 mb-3 link-dark text-decoration-none border-bottom">
+        <svg class="bi pe-none me-2" width="30" height="24"><use xlink:href="#bootstrap" /></svg>
+        <span class="fs-5 text-uppercase fw-bold">Danh sách bài viết</span>
+    </a>
+    <ul class="list-unstyled p-0">
+        @foreach (var category in postCategories)
+        {
+            var posts = Model.Where(x => x.CategoryID == category.ID);
+            <li class="mb-1 text-left">
+                @if (posts.Count() > 0)
+                {
+                    <a class="btn btn-toggle rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#@category.Alias" aria-expanded="false">
+                        @category.Name
+                    </a>
+                    <div class="collapse" id="@category.Alias">
+                        <ul class="btn-toggle-nav list-unstyled fw-normal pb-1 small">
+                            @foreach (var post in posts)
+                            {
+                                var postUrl = "/tin-tuc/" + post.Alias + ".html";
+                                <li>
+                                    <a href="@postUrl" class="link-dark d-inline-flex text-decoration-none rounded">@post.Name</a>
+                                </li>
+                                <li class="border-top my-3"></li>
+                            }
+                        </ul>
+                    </div>
+                }
+                else
+                {
+                    <a href="" class="btn rounded border-0">
+                        @category.Name
+                    </a>
+                }
+            </li>
+        }
+        <li class="border-top my-3"></li>
+    </ul>
+</div>

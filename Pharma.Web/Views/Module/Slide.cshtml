@@ -1,0 +1,30 @@
+﻿@model IEnumerable<Pharma.Web.Models.SlideViewModel>
+<div id="carouselExampleInterval" class="carousel slide h-50" data-bs-ride="carousel">
+    <div class="carousel-inner h-50">
+        @{ int index = 1;}
+        @foreach (var slider in Model)
+        {
+            if (index == 1)
+            {
+                <div class="carousel-item active h-50">
+                    <img src="@slider.Image" class="d-block w-100" alt="@slider.Name">
+                </div>
+            }
+            else
+            {
+                <div class="carousel-item h-50">
+                    <img src="@slider.Image" class="d-block w-100" alt="@slider.Name">
+                </div>
+            }
+            index++;
+        }
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+    </button>
+</div>

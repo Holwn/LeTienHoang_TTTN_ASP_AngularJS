@@ -1,4 +1,5 @@
 ﻿using Pharma.Model.Abstract;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -30,16 +31,24 @@ namespace Pharma.Model.Models
         public string MoreImage { set; get; }
         public decimal? BatchPrice { set; get; }
         public decimal? RetailPrice { set; get; }
-        [Required]
-        public int UnitID { set; get; }
+        public int BatchUnitID { set; get; }
+        public int RetailUnitID { set; get; }
+        public int? Contain { set; get; }
+        public int? MiduleUnitID { set; get; }
+        public int? ContainMidule { set; get; }
+        public int? Quantity { set; get; }
+
+        [MaxLength(256)]
+        public string BatchNumber { set; get; }
+
+        public DateTime? ExpiredDate { set; get; }
+        public bool? IsHaveExpiredDate { set; get; }
 
         [MaxLength(100)]
         public string Barcode { set; get; }
 
         [MaxLength(500)]
         public string Description { set; get; }
-
-        [MaxLength(2048)]
         public string Contents { set; get; }
 
         [MaxLength(1024)]
@@ -55,12 +64,12 @@ namespace Pharma.Model.Models
         [MaxLength(256)]
         public string MetaDescription { set; get; }
 
+        public bool? Prescription { set; get; }
         public bool? HomeFlag { set; get; }
         public bool? HotFlag { set; get; }
         public int? ViewCount { set; get; }
         public string Tags { set; get; }
         public virtual IEnumerable<ProductTag> ProductTags { set; get; }
-        public virtual IEnumerable<ProductMapping> ProductMappings { set; get; }
         public virtual IEnumerable<ReceiptNoteItem> ReceiptNoteItems { set; get; }
         public virtual IEnumerable<DeliveryNoteItem> DeliveryNoteItems { set; get; }
 
@@ -69,8 +78,5 @@ namespace Pharma.Model.Models
 
         [ForeignKey("StoreID")]
         public virtual Store Store { set; get; }
-
-        [ForeignKey("UnitID")]
-        public virtual Unit Unit { set; get; }
     }
 }

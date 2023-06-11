@@ -8,8 +8,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
-                    <li class="breadcrumb-item">Sản phẩm</li>
-                    <li class="breadcrumb-item active">Danh sách</li>
+                    <li class="breadcrumb-item">Thuốc</li>
+                    <li class="breadcrumb-item active">Danh mục thuốc</li>
                 </ol>
             </div>
         </div>
@@ -41,8 +41,9 @@
                             <tr>
                                 <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
                                 <th style="width: 5%">ID</th>
-                                <th style="width: 55%">Tên sản phẩm</th>
-                                <th style="width: 20%">Ngày tạo</th>
+                                <th style="width: 10%">Hình</th>
+                                <th style="width: 50%">Tên sản phẩm</th>
+                                <th style="width: 15%">Ngày tạo</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width: 10%">Thao tác</th>
                             </tr>
@@ -51,6 +52,7 @@
                             <tr ng-repeat="item in products">
                                 <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                                 <td>{{item.ID}}</td>
+                                <td><img class="image img-fluid" alt="{{item.Name}}" src="{{item.Image}}"></td>
                                 <td>{{item.Name}}</td>
                                 <td>
                                     {{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}
@@ -58,7 +60,8 @@
                                 <td>
                                     <span ng-class="{'badge bg-danger':item.Status==false,'badge bg-success':item.Status==true}">
                                         {{item.Status | statusFilter}}
-                                    </span>
+                                    </span><br />
+                                    ({{item.Quantity}})
                                 </td>
                                 <td>
                                     <button class="btn btn-sm btn-primary" ui-sref="edit_product({id:item.ID})">

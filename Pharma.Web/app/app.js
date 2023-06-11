@@ -3,12 +3,17 @@
 (function () {
     angular.module('pharma',
         [
+            'pharma.deliveryNotes',
+            'pharma.contactdetails',
             'pharma.footers',
+            'pharma.noteBooks',
+            'pharma.pages',
             'pharma.post_categories',
             'pharma.posts',
             'pharma.product_categories',
             'pharma.products',
             'pharma.receiptNotes',
+            'pharma.slides',
             'pharma.subjects',
             'pharma.units',
             'pharma.common'

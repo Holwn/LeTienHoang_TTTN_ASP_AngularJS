@@ -7,6 +7,7 @@ namespace Pharma.Model.Models
     public class Footer
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
         [Required]
         [MaxLength(50)]
@@ -16,5 +17,6 @@ namespace Pharma.Model.Models
         public string Type { set; get; }
         [MaxLength(256)]
         public string Link { set; get; }
+        public int? ParentID { set; get; }
     }
 }

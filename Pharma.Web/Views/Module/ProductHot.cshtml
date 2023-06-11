@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Pharma.Web.Models.ProductViewModel>
+<div class="row mb-2">
+    <div class="col-md-6">
+        @{var url1 = "/" + Model.ToList()[0].Alias + ".p-" + Model.ToList()[0].ID + ".html";}
+        <a href="@url1" class="text-decoration-none">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                <div class="col-md-6 p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">@Model.ToList()[0].Name</strong>
+                    <div class="mb-1 text-danger">@Model.ToList()[0].BatchPrice đ</div>
+                    <p class="card-text mb-auto">@Model.ToList()[0].Description</p>
+                </div>
+
+                <div class="col-md-6 d-lg-block">
+                    <img class="bd-placeholder-img" src="@Model.ToList()[0].Image" width="200" height="250" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" />
+                </div>
+            </div>
+        </a>
+
+    </div>
+    <div class="col-md-6">
+        @{var url2 = "/" + Model.ToList()[1].Alias + ".p-" + Model.ToList()[1].ID + ".html";}
+        <a href="@url2" class="text-decoration-none">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+
+                <div class="col-md-6 p-4 d-flex flex-column position-static">
+                    <strong class="d-inline-block mb-2 text-primary">@Model.ToList()[1].Name</strong>
+                    <div class="mb-1 text-danger">@Model.ToList()[1].BatchPrice đ</div>
+                    <p class="card-text mb-auto">@Model.ToList()[1].Description</p>
+                </div>
+
+                <div class="col-md-6 d-lg-block">
+                    <img class="bd-placeholder-img" src="@Model.ToList()[1].Image" width="200" height="250" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false" />
+                </div>
+            </div>
+        </a>
+    </div>
+</div>

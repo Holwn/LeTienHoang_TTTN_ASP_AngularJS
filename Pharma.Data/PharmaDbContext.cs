@@ -16,11 +16,14 @@ namespace Pharma.Data
             this.Configuration.LazyLoadingEnabled = false;
         }
 
+        public DbSet<ContactDetail> ContactDetails { set; get; }
         public DbSet<DeliveryNote> DeliveryNotes { set; get; }
         public DbSet<DeliveryNoteItem> DeliveryNoteItems { set; get; }
+        public DbSet<Feedback> Feedbacks { set; get; }
         public DbSet<Footer> Footers { set; get; }
         public DbSet<Menu> Menus { set; get; }
         public DbSet<MenuGroup> MenuGroups { set; get; }
+        public DbSet<NoteBook> NoteBooks { set; get; }
         public DbSet<Page> Pages { set; get; }
         public DbSet<Post> Posts { set; get; }
         public DbSet<PostCategory> PostCategories { set; get; }

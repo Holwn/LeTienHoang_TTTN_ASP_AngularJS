@@ -5,7 +5,6 @@
 
     function subjectEditController(apiService, $scope, notificationService, $state, $stateParams, commonService) {
         $scope.subject = {
-            Status: true,
         }
         $scope.TypeSubjects = [
             {

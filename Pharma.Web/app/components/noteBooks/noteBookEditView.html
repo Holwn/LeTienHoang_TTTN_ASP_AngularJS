@@ -1,0 +1,81 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Cập nhật Ghi chú: {{noteBook.Name}}</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item"><a ui-sref="noteBooks">Ghi chú</a></li>
+                    <li class="breadcrumb-item active">Cập nhật</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+    <!-- Horizontal Form -->
+    <div class="card card-default">
+        
+        <form class="form-horizontal" novalidate name="frmUpdateNoteBook" role="form" ng-submit="UpdateNoteBook()">
+            <div class="card-body row">
+
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="name" class="col-sm-4 col-form-label">Tiêu đề ghi chú</label>
+                        <div class="col-sm-8">
+                            <input type="text" class="form-control" ng-maxlength="256" required name="name" ng-model="noteBook.Name">
+                            <span ng-show="frmUpdateNoteBook.name.$invalid && !frmUpdateNoteBook.name.$error.maxlength" class="badge badge-pill badge-danger">Phải nhập Tiêu đề ghi chú</span>
+                            <span ng-show="frmUpdateNoteBook.name.$error.maxlength" class="badge badge-pill badge-danger">Tiêu đề ghi chú chỉ được 256 ký tự</span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="contents" class="col-sm-4 col-form-label">Nội dung ghi chú</label>
+                        <div class="col-sm-8">
+                            <textarea type="text" class="form-control" ckeditor="ckeditorOptions" name="contents" ng-model="noteBook.Contents"></textarea>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-md-6">
+
+                    <div class="form-group row">
+                        <label for="modelTargetLink" class="col-sm-4 col-form-label">Liên kết liên quan</label>
+                        <div class="col-sm-8">
+                            <select name="modelTargetLink" required class="form-control" ng-model="noteBook.ModelTargetLink" ng-options="option.Link as option.Name for option in linkNoteBooks">
+                                <option value="">--- Chọn liên kết ---</option>
+                            </select>
+                            <input type="hidden" name="modelTargetLink" ng-model="noteBook.ModelTargetLink" />
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-4">
+                            <div class="form-check">
+                                <label class="form-check-label" for="status">
+                                    <input type="checkbox" class="form-check-input" name="status" ng-model="noteBook.Status" ng-checked="noteBook.Status">Kích hoạt
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                <button ui-sref="noteBooks" class="btn btn-default">Hủy</button>
+                <button type="submit" ng-disabled="frmUpdateNoteBook.$invalid" class="btn btn-success fa-pull-right">Lưu</button>
+            </div>
+            <!-- /.card-footer -->
+        </form>
+    </div>
+    <!-- /.card -->
+</section>
+<!-- /.content -->

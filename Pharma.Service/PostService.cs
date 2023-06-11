@@ -25,6 +25,7 @@ namespace Pharma.Service
         IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow);
 
         Post GetById(int id);
+        Post GetByAlias(string alias);
 
         void Save();
     }
@@ -105,6 +106,11 @@ namespace Pharma.Service
         public IEnumerable<Post> GetAllPaging(int page, int pageSize, out int totalRow)
         {
             return _postRepository.GetMultiPaging(x => x.Status, out totalRow, page, pageSize);
+        }
+
+        public Post GetByAlias(string alias)
+        {
+            return _postRepository.GetSingleByCondition(x => x.Alias == alias && x.Status);
         }
 
         public Post GetById(int id)

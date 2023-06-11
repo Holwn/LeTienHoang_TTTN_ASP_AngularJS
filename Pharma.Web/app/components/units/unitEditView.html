@@ -8,8 +8,8 @@
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
-                    <li class="breadcrumb-item">Sản phẩm</li>
-                    <li class="breadcrumb-item"><a ui-sref="units">Đơn vị tinh</a></li>
+                    <li class="breadcrumb-item">Thuốc</li>
+                    <li class="breadcrumb-item"><a ui-sref="units">Đơn vị tính</a></li>
                     <li class="breadcrumb-item active">Cập nhật</li>
                 </ol>
             </div>
@@ -35,6 +35,10 @@
                         </div>
                     </div>
 
+                </div>
+
+                <div class="col-md-6">
+
                     <div class="form-group row">
                         <div class="offset-sm-2 col-sm-4">
                             <div class="form-check">
@@ -42,28 +46,6 @@
                                     <input type="checkbox" class="form-check-input" name="status" ng-model="unit.Status" ng-checked="unit.Status">Kích hoạt
                                 </label>
                             </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <div class="col-md-6">
-
-                    <div class="form-group row">
-                        <label for="parentId" class="col-sm-4 col-form-label">Danh mục cha</label>
-                        <div class="col-sm-8">
-                            <select name="parentId" class="form-control" ng-model="unit.ParentID" ng-options="option.ID as option.Name for option in parentUnits">
-                                <option value="">--- Đơn vị gốc ---</option>
-                            </select>
-                            <input type="hidden" name="parentId" ng-model="unit.ParentID" />
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label for="contain" class="col-sm-4 col-form-label">Quy đổi từ đơn vị cha</label>
-                        <div class="col-sm-8">
-                            <input type="number" class="form-control" name="contain" ng-model="unit.Contain">
-                            <!--<span ng-show="frmUpdateUnit.parentId.$error.maxlength" class="badge badge-pill badge-danger">Tên danh mục chỉ được 256 ký tự</span>-->
                         </div>
                     </div>
 

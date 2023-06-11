@@ -14,5 +14,6 @@ namespace Pharma.Web.Models
         [Required]
         public string Type { set; get; }
         public string Link { set; get; }
+        public int? ParentID { set; get; }
     }
 }

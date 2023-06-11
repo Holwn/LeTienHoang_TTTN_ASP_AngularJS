@@ -108,15 +108,74 @@
     <Compile Include="Migrations\202305251506455_UpdateReceiptAndDeliveyNote.designer.cs">
       <DependentUpon>202305251506455_UpdateReceiptAndDeliveyNote.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202305270545453_UpdateProductMapping.cs" />
+    <Compile Include="Migrations\202305270545453_UpdateProductMapping.designer.cs">
+      <DependentUpon>202305270545453_UpdateProductMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202305310351225_UpdateRetailInPricePM.cs" />
+    <Compile Include="Migrations\202305310351225_UpdateRetailInPricePM.designer.cs">
+      <DependentUpon>202305310351225_UpdateRetailInPricePM.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306021433163_ChangeProductMapping.cs" />
+    <Compile Include="Migrations\202306021433163_ChangeProductMapping.designer.cs">
+      <DependentUpon>202306021433163_ChangeProductMapping.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306021507450_UpdateProduct.cs" />
+    <Compile Include="Migrations\202306021507450_UpdateProduct.designer.cs">
+      <DependentUpon>202306021507450_UpdateProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306050249339_UpdateSomeTable.cs" />
+    <Compile Include="Migrations\202306050249339_UpdateSomeTable.designer.cs">
+      <DependentUpon>202306050249339_UpdateSomeTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306050935329_AddIsHaveExDInProduct.cs" />
+    <Compile Include="Migrations\202306050935329_AddIsHaveExDInProduct.designer.cs">
+      <DependentUpon>202306050935329_AddIsHaveExDInProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306060339462_UpdateContentsProduct.cs" />
+    <Compile Include="Migrations\202306060339462_UpdateContentsProduct.designer.cs">
+      <DependentUpon>202306060339462_UpdateContentsProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306071616592_UpdateDeilveryNoteItemPrice.cs" />
+    <Compile Include="Migrations\202306071616592_UpdateDeilveryNoteItemPrice.designer.cs">
+      <DependentUpon>202306071616592_UpdateDeilveryNoteItemPrice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306090232563_UpdateProductBatchUnitID.cs" />
+    <Compile Include="Migrations\202306090232563_UpdateProductBatchUnitID.designer.cs">
+      <DependentUpon>202306090232563_UpdateProductBatchUnitID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306090844219_ContactDetail.cs" />
+    <Compile Include="Migrations\202306090844219_ContactDetail.designer.cs">
+      <DependentUpon>202306090844219_ContactDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306091518304_Feedback.cs" />
+    <Compile Include="Migrations\202306091518304_Feedback.designer.cs">
+      <DependentUpon>202306091518304_Feedback.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306091606197_UpdateFooterID.cs" />
+    <Compile Include="Migrations\202306091606197_UpdateFooterID.designer.cs">
+      <DependentUpon>202306091606197_UpdateFooterID.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306091624517_UpdateFooters.cs" />
+    <Compile Include="Migrations\202306091624517_UpdateFooters.designer.cs">
+      <DependentUpon>202306091624517_UpdateFooters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202306100345187_NoteBook.cs" />
+    <Compile Include="Migrations\202306100345187_NoteBook.designer.cs">
+      <DependentUpon>202306100345187_NoteBook.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="PharmaDbContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ContactDetailRepository.cs" />
     <Compile Include="Repositories\DeliveryNoteItemRepository.cs" />
     <Compile Include="Repositories\DeliveryNoteRepository.cs" />
     <Compile Include="Repositories\ErrorRepository.cs" />
+    <Compile Include="Repositories\FeedbackRepository.cs" />
     <Compile Include="Repositories\FooterRepository.cs" />
     <Compile Include="Repositories\MenuGroupRepository.cs" />
     <Compile Include="Repositories\MenuRepository.cs" />
+    <Compile Include="Repositories\NoteBookRepository.cs" />
     <Compile Include="Repositories\PageRepository.cs" />
     <Compile Include="Repositories\PostCategoryRepository.cs" />
     <Compile Include="Repositories\PostRepository.cs" />
@@ -184,6 +243,48 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202305251506455_UpdateReceiptAndDeliveyNote.resx">
       <DependentUpon>202305251506455_UpdateReceiptAndDeliveyNote.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305270545453_UpdateProductMapping.resx">
+      <DependentUpon>202305270545453_UpdateProductMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202305310351225_UpdateRetailInPricePM.resx">
+      <DependentUpon>202305310351225_UpdateRetailInPricePM.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306021433163_ChangeProductMapping.resx">
+      <DependentUpon>202306021433163_ChangeProductMapping.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306021507450_UpdateProduct.resx">
+      <DependentUpon>202306021507450_UpdateProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306050249339_UpdateSomeTable.resx">
+      <DependentUpon>202306050249339_UpdateSomeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306050935329_AddIsHaveExDInProduct.resx">
+      <DependentUpon>202306050935329_AddIsHaveExDInProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306060339462_UpdateContentsProduct.resx">
+      <DependentUpon>202306060339462_UpdateContentsProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306071616592_UpdateDeilveryNoteItemPrice.resx">
+      <DependentUpon>202306071616592_UpdateDeilveryNoteItemPrice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306090232563_UpdateProductBatchUnitID.resx">
+      <DependentUpon>202306090232563_UpdateProductBatchUnitID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306090844219_ContactDetail.resx">
+      <DependentUpon>202306090844219_ContactDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306091518304_Feedback.resx">
+      <DependentUpon>202306091518304_Feedback.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306091606197_UpdateFooterID.resx">
+      <DependentUpon>202306091606197_UpdateFooterID.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306091624517_UpdateFooters.resx">
+      <DependentUpon>202306091624517_UpdateFooters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202306100345187_NoteBook.resx">
+      <DependentUpon>202306100345187_NoteBook.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -42,7 +42,8 @@
                             <tr>
                                 <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
                                 <th style="width: 5%">ID</th>
-                                <th style="width: 55%">Tên chủ thể</th>
+                                <th style="width: 30%">Tên chủ thể</th>
+                                <th style="width: 15%">Loại chủ thể</th>
                                 <th style="width: 20%">Ngày tạo</th>
                                 <th style="width: 10%">Trạng thái</th>
                                 <th style="width: 10%">Thao tác</th>
@@ -53,6 +54,7 @@
                                 <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
                                 <td>{{item.ID}}</td>
                                 <td>{{item.Name}}</td>
+                                <td>{{item.TypeSub}}</td>
                                 <td>
                                     {{item.CreatedDate | date:'dd/MM/yyyy hh:mm:ss'}}
                                 </td>

@@ -59,12 +59,15 @@
   <ItemGroup>
     <Compile Include="Abstract\Auditable.cs" />
     <Compile Include="Models\ApplicationUser.cs" />
+    <Compile Include="Models\ContactDetail.cs" />
     <Compile Include="Models\DeliveryNote.cs" />
     <Compile Include="Models\DeliveryNoteItem.cs" />
     <Compile Include="Models\Error.cs" />
+    <Compile Include="Models\Feedback.cs" />
     <Compile Include="Models\Footer.cs" />
     <Compile Include="Models\Menu.cs" />
     <Compile Include="Models\MenuGroup.cs" />
+    <Compile Include="Models\NoteBook.cs" />
     <Compile Include="Models\Page.cs" />
     <Compile Include="Models\Post.cs" />
     <Compile Include="Models\PostCategory.cs" />
@@ -85,10 +88,13 @@
     <Compile Include="Models\Unit.cs" />
     <Compile Include="Models\VisitorStatistic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ServiceModel\DNIGroupByExpiredDateModel.cs" />
+    <Compile Include="ServiceModel\RNIGroupByExpiredDateModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
+    <None Include="ServiceModel\DB.rar" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -8,26 +8,22 @@ namespace Pharma.Model.Models
     public class ProductMapping
     {
         [Key]
+        [Column(Order = 1)]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID { set; get; }
-
+        [Key]
+        [Column(Order = 2)]
         public int ProductID { set; get; }
-        public decimal? BatchInPrice { set; get; }
-
-        public DateTime? BatchInDate { set; get; }
-        public decimal? RetailInPrice { set; get; }
-
-        public DateTime? RetailInDate { set; get; }
+        public int? RetailID { set; get; }
+        public int? ReceiptQuantity { set; get; }
+        public decimal? ReceiptPrice  { set; get; }
+        public int? DeliveryQuantity { set; get; }
+        public decimal? DeliveryPrice { set; get; }
 
         [MaxLength(256)]
         public string BatchNumber { set; get; }
 
         public DateTime? ExpiredDate { set; get; }
-        public int? Quantity { set; get; }
-        public int? UnitID { set; get; }
-
-        [ForeignKey("UnitID")]
-        public virtual Unit Unit { set; get; }
 
         [ForeignKey("ProductID")]
         public virtual Product Product { set; get; }

@@ -1,0 +1,23 @@
+﻿@model Pharma.Web.Models.PostViewModel
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            @{ Html.RenderAction("Category", "Page");}
+        </div>
+        <div class="album bg-light col-md-8">
+            <div class="container row">
+                <div class="myfont">
+                    <h3 class="p-2 text-uppercase" style="font-weight:bold">@Model.Name</h3>
+                    <div>
+                        @Html.Raw(Model.Contents)
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

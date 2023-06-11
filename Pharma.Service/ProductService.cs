@@ -3,6 +3,7 @@ using Pharma.Data.Infrastructure;
 using Pharma.Data.Repositories;
 using Pharma.Model.Models;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Pharma.Service
 {
@@ -15,10 +16,19 @@ namespace Pharma.Service
         Product Delete(int id);
 
         IEnumerable<Product> GetAll();
+        IEnumerable<Product> GetProductHot();
 
         IEnumerable<Product> GetAll(string keyword);
 
+        IEnumerable<Product> GetListProductByCategoryIdPaging(int catgoryId, int page, int pageSize, out int totalRow);
+        IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow);
+        IEnumerable<string> GetListProductByName(string name);
+        IEnumerable<Product> GetRatedProducts(int id,int top);
         Product GetById(int id);
+        IEnumerable<Tag> GetListTagByProductId(int id);
+        Tag GetTag(string tagId);
+        void IncreaseView(int id);
+        IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow);
 
         void Save();
     }
@@ -90,9 +100,60 @@ namespace Pharma.Service
             return _productRepository.GetSingleById(id);
         }
 
+        public IEnumerable<Product> GetListProductByCategoryIdPaging(int catgoryId, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status && x.CategoryID == catgoryId);
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
+        }
+
+        public IEnumerable<string> GetListProductByName(string name)
+        {
+            return _productRepository.GetMulti(x => x.Status && x.Name.Contains(name)).Select(y=>y.Name);
+        }
+
+        public IEnumerable<Product> GetProductHot()
+        {
+            return _productRepository.GetProductHot();
+        }
+
+        public IEnumerable<Product> GetRatedProducts(int id, int top)
+        {
+            var product = _productRepository.GetSingleById(id);
+            return _productRepository.GetMulti(x => x.Status && x.ID != id && x.CategoryID==product.CategoryID).OrderByDescending(x=>x.CreatedDate).Take(top);
+        }
+        public IEnumerable<Product> GetListProductByTag(string tagId, int page, int pageSize, out int totalRow)
+        {
+            var model = _productRepository.GetListProductByTag(tagId, page, pageSize, out totalRow);
+
+            return model;
+        }
+
+        public IEnumerable<Tag> GetListTagByProductId(int id)
+        {
+            return _productTagRepository.GetMulti(x => x.ProductID == id, new string[] { "Tag" }).Select(y => y.Tag);
+        }
+        public void IncreaseView(int id)
+        {
+            var product = _productRepository.GetSingleById(id);
+            if (product.ViewCount.HasValue)
+                product.ViewCount += 1;
+            else
+                product.ViewCount = 1;
+        }
+
         public void Save()
         {
             _unitOfWork.Commit();
+        }
+
+        public IEnumerable<Product> Search(string keyword, int page, int pageSize, out int totalRow)
+        {
+            var query = _productRepository.GetMulti(x => x.Status && x.Name.Contains(keyword));
+            totalRow = query.Count();
+
+            return query.Skip((page - 1) * pageSize).Take(pageSize);
         }
 
         public void Update(Product product)
@@ -120,6 +181,11 @@ namespace Pharma.Service
                     _productTagRepository.Add(productTag);
                 }
             }
+        }
+
+        public Tag GetTag(string tagId)
+        {
+            return _tagRepository.GetSingleByCondition(x=>x.ID==tagId);
         }
     }
 }

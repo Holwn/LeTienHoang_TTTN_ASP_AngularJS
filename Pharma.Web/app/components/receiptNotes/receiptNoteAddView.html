@@ -51,9 +51,9 @@
 
                     <div class="form-group row">
                         <label for="dateNote" class="col-sm-4 col-form-label">Ngày hóa đơn</label>
-                        <div class="col-sm-8">
+                        <div class="col-sm-8 input-group">
                             <input type="text" class="form-control" ng-model="formattedDate" readonly>
-                            <input type="date" name="dateNote" ng-model="receiptNote.Date" as-date style="width:25px;height:30px;">
+                            <input type="date" name="dateNote" ng-model="receiptNote.Date" as-date-tedu style="width:25px;height:30px;">
                         </div>
                     </div>
 
@@ -136,9 +136,9 @@
                                     <th scope="col" width="3%">#</th>
                                     <th scope="col" width="3%">STT</th>
                                     <th scope="col" width="25%">Tên sản phẩm</th>
-                                    <th scope="col" width="10%">Đơn vị lẻ</th>
+                                    <th scope="col" width="10%">Đơn vị sỉ</th>
                                     <th scope="col" width="14%">Số lượng</th>
-                                    <th scope="col" width="15%">Đơn giá lẻ</th>
+                                    <th scope="col" width="15%">Đơn giá sỉ</th>
                                     <th scope="col" width="5%">VAT & C.Khấu</th>
                                     <th scope="col" width="15%">Số lô & Hạn dùng</th>
                                     <th scope="col" width="10%">Tổng tiền</th>
@@ -156,7 +156,7 @@
                                         <input type="text" class="form-control" name="quantity" ng-change="ChangeItem(item)" ng-model="item.Quantity">
                                     </td>
                                     <td>
-                                        <input type="text" class="form-control" name="retailprice" ng-change="ChangeItem(item)" ng-model="item.RetailPrice">
+                                        <input type="text" class="form-control" name="retailprice" ng-change="ChangeItem(item)" ng-model="item.Price">
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" ng-change="ChangeItem(item)" name="vat" ng-model="item.VAT">
@@ -164,7 +164,7 @@
                                     </td>
                                     <td>
                                         <input type="text" class="form-control" required name="batchnumber" ng-model="item.BatchNumber">
-                                        <input type="date" as-date class="form-control" required name="expireddate" ng-model="item.ExpiredDate">
+                                        <input type="date" as-date-tedu class="form-control" required name="expireddate" ng-model="item.ExpiredDate">
                                         <span ng-show="item.BatchNumber=='' || item.ExpiredDate==0" class="badge badge-pill badge-danger">Phải nhập số lô - hạn dùng</span>
                                     </td>
                                     <td>{{item.Amount}}</td>

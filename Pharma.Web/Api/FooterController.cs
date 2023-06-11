@@ -25,6 +25,21 @@ namespace Pharma.Web.Api
         {
             this._footerService = footerService;
         }
+        [Route("getallparents")]
+        [HttpGet]
+        public HttpResponseMessage Get(HttpRequestMessage request)
+        {
+            return CreateHttpReponse(request, () =>
+            {
+                var list = _footerService.GetAll();
+
+                var listPageVm = AutoMapperConfiguration.InitializeAutomapper().Map<List<FooterViewModel>>(list);
+
+                HttpResponseMessage response = request.CreateResponse(HttpStatusCode.OK, listPageVm);
+
+                return response;
+            });
+        }
         #endregion
         [Route("getbyid/{id:int}")]
         [HttpGet]

@@ -1,0 +1,143 @@
+﻿@model Pharma.Web.Models.ProductViewModel
+
+@{
+    ViewBag.Title = "Detail";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+    var unit = (Pharma.Web.Models.UnitViewModel)ViewBag.Unit;
+    var relatedProducts = (IEnumerable<Pharma.Web.Models.ProductViewModel>)ViewBag.RelatedProducts;
+    var tags = (IEnumerable<Pharma.Web.Models.TagViewModel>)ViewBag.Tags;
+    var moreImages = (List<string>)ViewBag.MoreImages;
+}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            @{ Html.RenderAction("Category", "Home");}
+        </div>
+        <div class="album bg-light col-md-8">
+            <div class="container row">
+                <div class="col-md-6 row">
+                    @*<img alt="@Model.Name" src="@Model.Image" class="col-md-12 image mt-2 w-100" />*@
+                    <div id="carouselExampleInterval" class="carousel slide h-50 mb-0 pb-0" data-bs-ride="carousel">
+                        <div class="carousel-inner h-100">
+                            @{ int index = 1;}
+                            @foreach (var image in moreImages)
+                            {
+                                if (index == 1)
+                                {
+                                    <div class="carousel-item active h-50">
+                                        <img src="@image" class="d-block w-100 col-md-12 image mt-2" alt="@Model.Name">
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="carousel-item h-50">
+                                        <img src="@image" class="d-block w-100 col-md-12 image mt-2" alt="@Model.Name">
+                                    </div>
+                                }
+                                index++;
+                            }
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                    <div class="container row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 mt-0">
+                        @foreach (var image in moreImages)
+                        {
+                            <img src="@image" class="d-block image col" style="width:50px;height:50px" alt="@Model.Name">
+                        }
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <h3 class="p-2 text-uppercase" style="font-family: Gill Sans, sans-serif; font-weight: bold">@Model.Name</h3>
+                    <b class="d-inline-block">Giá bán: </b><p class="d-inline-block">&nbsp;@Model.BatchPrice đ/ @unit.Name </p><br />
+                    <b class="d-inline-block">Công dụng: </b><p class="d-inline-block">&nbsp;@Model.Description</p><br />
+                    <b class="d-inline-block">Thương hiệu: </b><p class="d-inline-block">&nbsp;@Model.Manufacturer</p><br />
+                    <b class="d-inline-block">Nhà sản xuất: </b><p class="d-inline-block">&nbsp;@Model.AddressManufacturer</p><br />
+                    <b class="d-inline-block">Thuốc cần kê toa: </b><p class="d-inline-block">&nbsp;@(Model.Prescription==true?"Kê đơn":"Không kê đơn")</p><br />
+                    <b class="d-inline-block">Tag: </b>
+                    <div class="btn-group p-2">
+                        @foreach (var tag in tags)
+                        {
+                            <a href="/tag/@(tag.ID).html" class="btn btn-sm btn-outline-warning text-dark" style="margin-right: 5px; border-radius: 50px;padding:4px">
+                                @tag.Name
+                            </a>
+                        }
+                    </div>
+                </div>
+                <div class="myfont">
+                    <h3 class="p-2 text-uppercase" style="font-weight:bold">Thông tin chi tiết</h3>
+                    <div style="height: 300px; overflow: hidden;">
+                        @Html.Raw(Model.Contents)
+                    </div>
+                    <a class="btn btn-outline-dark border-0 shadow-lg dialog-btn" href="#my-dialog">Xem thêm...</a>
+
+                    <div class="dialog overlay" id="my-dialog">
+                        <a href="#" class="text-decoration-none position-absolute w-100 h-100"></a>
+                        <div class="dialog-body">
+                            <a class="btn btn-warning float-end" href="#">&times;</a>
+                            <h3 class="p-2 text-uppercase" style="font-weight:bold">Thông tin chi tiết</h3>
+                            <div>
+                                @Html.Raw(Model.Contents)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="album bg-light mt-3">
+        <div class="">
+            <h3 class="p-2 text-uppercase" style="font-family:Gill Sans, sans-serif;">Dược phẩm liên quan</h3>
+        </div>
+        <div class="container">
+            @if (relatedProducts.Count() > 0)
+            {
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-5 g-3">
+                    @foreach (var product in relatedProducts)
+                    {
+                        var url = "/" + product.Alias + ".p-" + product.ID + ".html";
+                        <div class="col">
+                            <div class="card shadow-sm" style="height:400px">
+                                <a href="@url" class="text-decoration-none">
+                                    <img class="bd-placeholder-img card-img-top" alt="@product.Name" src="@product.Image" width="225" height="200" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" />
+                                </a>
+                                <div class="card-body h-100">
+                                    <div class="d-flex flex-column position-static h-50">
+                                        <a href="@url" class="text-decoration-none">
+                                            <strong class="d-inline-block mb-2 text-primary">@product.Name</strong>
+                                        </a>
+                                    </div>
+                                    <div class="d-flex justify-content-between align-items-center h-50">
+                                        <div class="btn-group">
+                                            <a href="@url" class="text-decoration-none">
+                                                <span class="btn btn-sm btn-outline-danger">@product.BatchPrice đ</span>
+                                            </a>
+                                        </div>
+                                        <small class="text-muted"> @(product.Quantity>0?"Còn hàng":"Hết hàng")</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+                </div>
+            }
+            else
+            {
+                <div class="text-danger text-center">
+                    <p>Không có dược phẩm tương tự trên</p>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+

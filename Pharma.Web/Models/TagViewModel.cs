@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Pharma.Model.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,7 +12,7 @@ namespace Pharma.Web.Models
         public string Name { set; get; }
         public string Type { set; get; }
 
-        public virtual IEnumerable<PostTagViewModel> PostTags { set; get; }
-        public virtual IEnumerable<ProductTagViewModel> ProductTags { set; get; }
+        public virtual IEnumerable<PostTag> PostTags { set; get; }
+        public virtual IEnumerable<ProductTag> ProductTags { set; get; }
     }
 }

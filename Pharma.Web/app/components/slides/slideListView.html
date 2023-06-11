@@ -1,0 +1,85 @@
+﻿<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Slide</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
+                    <li class="breadcrumb-item">Cấu hình</li>
+                    <li class="breadcrumb-item active">Slide</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<!-- Main content -->
+<section class="content">
+
+    <!-- Default box -->
+    <div class="card">
+
+        <div class="card-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" ng-model="keyword" placeholder="Từ khóa" aria-label="Từ khóa" aria-describedby="button-addon2">
+                        <button class="btn btn-outline-secondary" ng-click="search()" type="button" id="button-addon2">Tìm kiếm</button>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <button class="btn btn-danger fa-pull-right" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
+                    <button class="btn btn-success fa-pull-right" ui-sref="add_slide">Thêm mới</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <th><input name="all" type="checkbox" ng-click="selectAll()" /></th>
+                                <th style="width: 5%">ID</th>
+                                <th style="width: 30%">Tên slide</th>
+                                <th style="width: 55%">Hình</th>
+                                <th style="width: 10%">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="item in slides">
+                                <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
+                                <td>{{item.ID}}</td>
+                                <td>{{item.Name}}</td>
+                                <td><img class="image img-fluid" alt="{{item.Name}}" src="{{item.Image}}"></td>
+                                <td>
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_slide({id:item.ID})">
+                                        <i class="fa fa-pencil"></i>
+                                    </button>
+                                    <button class="btn btn-sm btn-danger" ng-click="deleteSlide(item.ID)">
+                                        <i class="fa fa-trash"></i>
+                                    </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <td colspan="6"><span class="fa-pull-right">Trang: số {{page + 1}} - Tổng số bản ghi: {{totalCount}}</span></td>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+            <!-- /.card -->
+        </div>
+        <!-- /.card-body -->
+        <div class="card-footer">
+            <pager-directive page="{{page}}" custom-path="{{customPath}}" pages-count="{{pagesCount}}" total-count="{{totalCount}}" search-func="getSlides(page)"></pager-directive>
+        </div>
+        <!-- /.card-footer-->
+    </div>
+    <!-- /.card -->
+
+</section>
+<!-- /.content -->

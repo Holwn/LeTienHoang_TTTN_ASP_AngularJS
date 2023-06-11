@@ -6,6 +6,7 @@
     function productCategoryAddController(apiService, $scope, notificationService, $state, commonService) {
         $scope.productCategory = {
             CreateDate: new Date(),
+            HomeFlag: true,
             Status: true,
         }
         $scope.GetSeoTitle = GetSeoTitle;

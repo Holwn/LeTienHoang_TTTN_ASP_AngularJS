@@ -1,0 +1,37 @@
+﻿@model Pharma.Web.Models.ContactDetailViewModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Layouts.cshtml";
+}
+@section footerJS{
+    
+}
+
+<div class="container mb-4">
+    <div class="row">
+        <div class="col-md-4">
+            @{ Html.RenderAction("Category", "Home");}
+        </div>
+        <div class="album bg-light col-md-8">
+            <input type="hidden" id="hidContactDetail" value="@Model.Address" />
+            <div class="">
+                <h3 class="p-2 text-uppercase" style="font-family:Gill Sans, sans-serif;">Thông tin liên hệ</h3>
+            </div>
+            <div class="container">
+                <address class="">
+                    <p>@Model.Address</p>
+                    <dl>
+                        <dt> </dt>
+                        <dd>Điện thoại: <span>@Model.Phone</span></dd>
+                        <dd>Email:&nbsp;<a href="mailto:@(Model.Email)">@(Model.Email)</a></dd>
+                    </dl>
+                </address>
+            </div>
+            <div class="clearfix"></div>
+            <div id="map">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.583061251996!2d106.63312477490878!3d10.843184989309657!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317529528259bf23%3A0x1da1e510211672b!2sChung%20c%C6%B0%20Khang%20Gia!5e0!3m2!1svi!2s!4v1686320295986!5m2!1svi!2s" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>

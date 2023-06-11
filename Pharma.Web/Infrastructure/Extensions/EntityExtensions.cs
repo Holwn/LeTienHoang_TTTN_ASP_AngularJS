@@ -10,13 +10,25 @@ namespace Pharma.Web.Infrastructure.Extensions
 {
     public static class EntityExtensions
     {
+        public static void UpdateContactDetail(this ContactDetail contactDetail, ContactDetailViewModel contactDetailVm)
+        {
+            contactDetail.ID = contactDetailVm.ID;
+            contactDetail.Name = contactDetailVm.Name;
+            contactDetail.Phone = contactDetailVm.Phone;
+            contactDetail.Email = contactDetailVm.Email;
+            contactDetail.Website = contactDetailVm.Website;
+            contactDetail.Address = contactDetailVm.Address;
+            contactDetail.Other = contactDetailVm.Other;
+            contactDetail.Lat = contactDetailVm.Lat;
+            contactDetail.Lng = contactDetailVm.Lng;
+            contactDetail.Status = contactDetailVm.Status;
+        }
         public static void UpdateDeliveryNoteItem(this DeliveryNoteItem deliveryNoteItem, DeliveryNoteItemViewModel deliveryNoteItemVm)
         {
             deliveryNoteItem.NoteID = deliveryNoteItemVm.NoteID;
             deliveryNoteItem.ProductID = deliveryNoteItemVm.ProductID;
             deliveryNoteItem.UnitID = deliveryNoteItemVm.UnitID;
-            deliveryNoteItem.BatchPrice = deliveryNoteItemVm.BatchPrice;
-            deliveryNoteItem.RetailPrice = deliveryNoteItemVm.RetailPrice;
+            deliveryNoteItem.Price = deliveryNoteItemVm.Price;
             deliveryNoteItem.Quantity = deliveryNoteItemVm.Quantity;
             deliveryNoteItem.VAT = deliveryNoteItemVm.VAT;
             deliveryNoteItem.Discount = deliveryNoteItemVm.Discount;
@@ -49,6 +61,33 @@ namespace Pharma.Web.Infrastructure.Extensions
             footer.Name = footerVm.Name;
             footer.Type = footerVm.Type;
             footer.Link = footerVm.Link;
+            footer.ParentID = footerVm.ParentID;
+        }
+        public static void UpdateNoteBook(this NoteBook noteBook, NoteBookViewModel noteBookVm)
+        {
+            noteBook.ID = noteBookVm.ID;
+            noteBook.Name = noteBookVm.Name;
+            noteBook.Contents = noteBookVm.Contents;
+            noteBook.ModelTargetLink = noteBookVm.ModelTargetLink;
+            noteBook.CreatedDate = noteBookVm.CreatedDate;
+            noteBook.CreatedBy = noteBookVm.CreatedBy;
+            noteBook.UpdatedDate = noteBookVm.UpdatedDate;
+            noteBook.UpdatedBy = noteBookVm.UpdatedBy;
+            noteBook.Status = noteBookVm.Status;
+        }
+        public static void UpdatePage(this Page page, PageViewModel pageVm)
+        {
+            page.ID = pageVm.ID;
+            page.Name = pageVm.Name;
+            page.Alias = pageVm.Alias;
+            page.Contents = pageVm.Contents;
+            page.MetaKeyword = pageVm.MetaKeyword;
+            page.MetaDescription = pageVm.MetaDescription;
+            page.CreatedDate = pageVm.CreatedDate;
+            page.CreatedBy = pageVm.CreatedBy;
+            page.UpdatedDate = pageVm.UpdatedDate;
+            page.UpdatedBy = pageVm.UpdatedBy;
+            page.Status = pageVm.Status;
         }
         public static void UpdatePostCategory(this PostCategory postCategory, PostCategoryViewModel postCategoryVm)
         {
@@ -116,14 +155,13 @@ namespace Pharma.Web.Infrastructure.Extensions
         {
             productMapping.ID = productMappingVm.ID;
             productMapping.ProductID = productMappingVm.ProductID;
-            productMapping.BatchInPrice = productMappingVm.BatchInPrice;
-            productMapping.BatchInDate = productMappingVm.BatchInDate;
-            productMapping.RetailInPrice = productMappingVm.RetailInPrice;
-            productMapping.RetailInDate = productMappingVm.RetailInDate;
+            productMapping.RetailID = productMappingVm.RetailID;
+            productMapping.ReceiptQuantity = productMappingVm.ReceiptQuantity;
+            productMapping.ReceiptPrice = productMappingVm.ReceiptPrice;
+            productMapping.DeliveryQuantity = productMappingVm.DeliveryQuantity;
+            productMapping.DeliveryPrice = productMappingVm.DeliveryPrice;
             productMapping.BatchNumber = productMappingVm.BatchNumber;
             productMapping.ExpiredDate = productMappingVm.ExpiredDate;
-            productMapping.Quantity = productMappingVm.Quantity;
-            productMapping.UnitID = productMappingVm.UnitID;
         }
         public static void UpdateProductTag(this ProductTag productTag, ProductTagViewModel productTagVm)
         {
@@ -140,7 +178,15 @@ namespace Pharma.Web.Infrastructure.Extensions
             product.MoreImage = productVm.MoreImage;
             product.BatchPrice = productVm.BatchPrice;
             product.RetailPrice = productVm.RetailPrice;
-            product.UnitID = productVm.UnitID;
+            product.BatchUnitID = productVm.BatchUnitID;
+            product.RetailUnitID = productVm.RetailUnitID;
+            product.Contain = productVm.Contain;
+            product.MiduleUnitID = productVm.MiduleUnitID;
+            product.ContainMidule = productVm.ContainMidule;
+            product.Quantity = productVm.Quantity;
+            product.BatchNumber = productVm.BatchNumber;
+            product.ExpiredDate = productVm.ExpiredDate;
+            product.IsHaveExpiredDate = productVm.IsHaveExpiredDate;
             product.Barcode = productVm.Barcode;
             product.Description = productVm.Description;
             product.Contents = productVm.Contents;
@@ -149,6 +195,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             product.StoreID = productVm.StoreID;
             product.MetaKeyword = productVm.MetaKeyword;
             product.MetaDescription = productVm.MetaDescription;
+            product.Prescription = productVm.Prescription;
             product.HomeFlag = productVm.HomeFlag;
             product.HotFlag = productVm.HotFlag;
             product.ViewCount = productVm.ViewCount;
@@ -164,8 +211,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             receiptNoteItem.NoteID = receiptNoteItemVm.NoteID;
             receiptNoteItem.ProductID = receiptNoteItemVm.ProductID;
             receiptNoteItem.UnitID = receiptNoteItemVm.UnitID;
-            receiptNoteItem.BatchPrice = receiptNoteItemVm.BatchPrice;
-            receiptNoteItem.RetailPrice = receiptNoteItemVm.RetailPrice;
+            receiptNoteItem.Price = receiptNoteItemVm.Price;
             receiptNoteItem.Quantity = receiptNoteItemVm.Quantity;
             receiptNoteItem.VAT = receiptNoteItemVm.VAT;
             receiptNoteItem.Discount = receiptNoteItemVm.Discount;
@@ -190,6 +236,16 @@ namespace Pharma.Web.Infrastructure.Extensions
             receiptNote.UpdatedDate = receiptNoteVm.UpdatedDate;
             receiptNote.UpdatedBy = receiptNoteVm.UpdatedBy;
             receiptNote.Status = receiptNoteVm.Status;
+        }
+        public static void UpdateSlide(this Slide slide,SlideViewModel slideVm)
+        {
+            slide.ID = slideVm.ID;
+            slide.Name = slideVm.Name;
+            slide.Description = slideVm.Description;
+            slide.Image = slideVm.Image;
+            slide.Url = slideVm.Url;
+            slide.DisplayOrder = slideVm.DisplayOrder;
+            slide.Status = slideVm.Status;
         }
         public static void UpdateStoreRole(this StoreRole storeRole, StoreRoleViewModel storeRoleVm)
         {
@@ -245,8 +301,7 @@ namespace Pharma.Web.Infrastructure.Extensions
             unit.ID = unitVm.ID;
             unit.Name = unitVm.Name;
             unit.StoreID = unitVm.StoreID;
-            unit.ParentID = unitVm.ParentID;
-            unit.Contain = unitVm.Contain;
+            unit.Description = unitVm.Description;
             unit.Status = unitVm.Status;
         }
     }
