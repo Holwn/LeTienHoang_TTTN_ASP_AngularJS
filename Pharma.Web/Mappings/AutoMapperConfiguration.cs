@@ -10,6 +10,9 @@ namespace Pharma.Web.Mappings
         {
             var config = new MapperConfiguration(cfg =>
               {
+                  cfg.CreateMap<ApplicationUser, ApplicationUserViewModel>();
+                  cfg.CreateMap<ApplicationRole, ApplicationRoleViewModel>();
+                  cfg.CreateMap<ApplicationGroup, ApplicationGroupViewModel>();
                   cfg.CreateMap<ContactDetail, ContactDetailViewModel>();
                   cfg.CreateMap<DeliveryNoteItem, DeliveryNoteItemViewModel>();
                   cfg.CreateMap<DeliveryNote, DeliveryNoteViewModel>();

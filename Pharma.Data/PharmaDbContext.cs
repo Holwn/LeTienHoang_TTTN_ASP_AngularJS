@@ -44,6 +44,10 @@ namespace Pharma.Data
         public DbSet<Unit> Units { set; get; }
         public DbSet<VisitorStatistic> VisitorStatistics { set; get; }
         public DbSet<Error> Errors { set; get; }
+        public DbSet<ApplicationGroup> ApplicationGroups { set; get; }
+        public DbSet<ApplicationRole> ApplicationRoles { set; get; }
+        public DbSet<ApplicationRoleGroup> ApplicationRoleGroups { set; get; }
+        public DbSet<ApplicationUserGroup> ApplicationUserGroups { set; get; }
 
         public static PharmaDbContext Create()
         {
@@ -51,8 +55,10 @@ namespace Pharma.Data
         }
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<IdentityUserRole>().HasKey(i =>new { i.UserId, i.RoleId });
-            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId);
+            modelBuilder.Entity<IdentityUserRole>().HasKey(i =>new { i.UserId, i.RoleId }).ToTable("ApplicationUserRoles");
+            modelBuilder.Entity<IdentityUserLogin>().HasKey(i => i.UserId).ToTable("ApplicationUserLogins");
+            modelBuilder.Entity<IdentityUserClaim>().HasKey(i => i.UserId).ToTable("ApplicationUserClaims");
+            modelBuilder.Entity<IdentityRole>().ToTable("ApplicationRoles");
         }
     }
 }

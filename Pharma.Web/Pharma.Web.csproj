@@ -204,6 +204,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\AccountController.cs" />
+    <Compile Include="Api\ApplicationGroupController.cs" />
+    <Compile Include="Api\ApplicationRoleController.cs" />
+    <Compile Include="Api\ApplicationUserController.cs" />
     <Compile Include="Api\ContactDetailController.cs" />
     <Compile Include="Api\DeliveryNoteController.cs" />
     <Compile Include="Api\DeliveryNoteItemController.cs" />
@@ -244,6 +247,9 @@
     <Compile Include="Infrastructure\Core\PaginationSet.cs" />
     <Compile Include="Infrastructure\Extensions\EntityExtensions.cs" />
     <Compile Include="Mappings\AutoMapperConfiguration.cs" />
+    <Compile Include="Models\ApplicationGroupViewModel.cs" />
+    <Compile Include="Models\ApplicationRoleViewModel.cs" />
+    <Compile Include="Models\ApplicationUserViewModel.cs" />
     <Compile Include="Models\ContactDetailViewModel.cs" />
     <Compile Include="Models\DeliveryNoteItemViewModel.cs" />
     <Compile Include="Models\DeliveryNoteViewModel.cs" />
@@ -271,6 +277,13 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="app\app.js" />
+    <Content Include="app\components\application_groups\applicationGroupAddController.js" />
+    <Content Include="app\components\application_groups\applicationGroupAddView.html" />
+    <Content Include="app\components\application_groups\applicationGroupEditController.js" />
+    <Content Include="app\components\application_groups\applicationGroupEditView.html" />
+    <Content Include="app\components\application_groups\applicationGroupListController.js" />
+    <Content Include="app\components\application_groups\applicationGroupListView.html" />
+    <Content Include="app\components\application_groups\applicationGroups.module.js" />
     <Content Include="app\components\contactdetails\contactdetailAddController.js" />
     <Content Include="app\components\contactdetails\contactdetailAddView.html" />
     <Content Include="app\components\contactdetails\contactdetailEditController.js" />
