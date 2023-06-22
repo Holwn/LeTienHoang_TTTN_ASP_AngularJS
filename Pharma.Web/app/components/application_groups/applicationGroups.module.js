@@ -1,4 +1,4 @@
-﻿/// <reference path="/Assets/admin/libs/angular/angular.js" />
+﻿/// <reference path="../../../assets/admin/libs/angularjs/angular.js" />
 
 (function () {
     angular.module('pharma.application_groups', ['pharma.common']).config(config);

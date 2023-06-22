@@ -234,6 +234,37 @@
                     </li>
 
                     <li class="border-top my-3"></li>
+
+                    <li class="mb-1 text-left bg-gradient">
+                        <a class="btn btn-toggle rounded border-0 collapsed" data-bs-toggle="collapse" data-bs-target="#application_groups" aria-expanded="false">
+                            <i class="fa-brands fa-centos"></i>
+                            &nbsp; Hệ thống
+                        </a>
+                        <div class="collapse" id="application_groups">
+                            <ul class="btn-toggle-nav list-unstyled pb-1">
+                                <li>
+                                    <a ui-sref="application_groups" class="link-light d-inline-flex text-decoration-none rounded mb-3 pl-4 align-items-center">
+                                        <i class="fa-solid fa-user-group"></i>
+                                        &nbsp; Nhóm người dùng
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="application_roles" class="link-light d-inline-flex text-decoration-none rounded mb-3 pl-4 align-items-center">
+                                        <i class="fa-brands fa-critical-role"></i>
+                                        &nbsp; Quyền
+                                    </a>
+                                </li>
+                                <li>
+                                    <a ui-sref="application_users" class="link-light d-inline-flex text-decoration-none rounded pl-4 align-items-center">
+                                        <i class="fa-solid fa-user-tie"></i>
+                                        &nbsp; Người dùng
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="border-top my-3"></li>
                 </ul>
             </nav>
             <!-- /.sidebar-menu -->

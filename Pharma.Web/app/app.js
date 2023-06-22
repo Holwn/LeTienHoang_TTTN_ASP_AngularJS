@@ -3,6 +3,9 @@
 (function () {
     angular.module('pharma',
         [
+            'pharma.application_groups',
+            'pharma.application_roles',
+            'pharma.application_users',
             'pharma.deliveryNotes',
             'pharma.contactdetails',
             'pharma.footers',

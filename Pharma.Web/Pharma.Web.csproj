@@ -284,6 +284,20 @@
     <Content Include="app\components\application_groups\applicationGroupListController.js" />
     <Content Include="app\components\application_groups\applicationGroupListView.html" />
     <Content Include="app\components\application_groups\applicationGroups.module.js" />
+    <Content Include="app\components\application_roles\applicationRoleAddController.js" />
+    <Content Include="app\components\application_roles\applicationRoleAddView.html" />
+    <Content Include="app\components\application_roles\applicationRoleEditController.js" />
+    <Content Include="app\components\application_roles\applicationRoleEditView.html" />
+    <Content Include="app\components\application_roles\applicationRoleListController.js" />
+    <Content Include="app\components\application_roles\applicationRoleListView.html" />
+    <Content Include="app\components\application_roles\applicationRoles.module.js" />
+    <Content Include="app\components\application_users\applicationUserAddController.js" />
+    <Content Include="app\components\application_users\applicationUserAddView.html" />
+    <Content Include="app\components\application_users\applicationUserEditController.js" />
+    <Content Include="app\components\application_users\applicationUserEditView.html" />
+    <Content Include="app\components\application_users\applicationUserListController.js" />
+    <Content Include="app\components\application_users\applicationUserListView.html" />
+    <Content Include="app\components\application_users\applicationUsers.module.js" />
     <Content Include="app\components\contactdetails\contactdetailAddController.js" />
     <Content Include="app\components\contactdetails\contactdetailAddView.html" />
     <Content Include="app\components\contactdetails\contactdetailEditController.js" />
@@ -515,6 +529,8 @@
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.esm.min.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.js" />
     <Content Include="Assets\admin\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.js" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.min.js" />
     <Content Include="Assets\admin\libs\ckeditor\ckeditor\adapters\jquery.js" />
     <Content Include="Assets\admin\libs\ckeditor\ckeditor\adapters\jquery.min.js" />
     <Content Include="Assets\admin\libs\ckeditor\ckeditor\ckeditor.js" />
@@ -7540,6 +7556,7 @@
     <Content Include="Assets\client\font-awesome\webfonts\fa-solid-900.woff2" />
     <Content Include="Assets\client\font-awesome\webfonts\fa-v4compatibility.ttf" />
     <Content Include="Assets\client\font-awesome\webfonts\fa-v4compatibility.woff2" />
+    <Content Include="Assets\admin\libs\checklist-model\checklist-model.min.js.map" />
     <None Include="packages.config" />
     <Content Include="Views\Admin\Index.cshtml" />
     <Content Include="Views\Shared\Layouts.cshtml" />

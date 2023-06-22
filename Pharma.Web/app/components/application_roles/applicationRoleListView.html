@@ -3,13 +3,13 @@
     <div class="container-fluid">
         <div class="row mb-2">
             <div class="col-sm-6">
-                <h1>Nhóm người dùng</h1>
+                <h1>Danh sách quyền</h1>
             </div>
             <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="admin#!/admin">Trang chủ</a></li>
                     <li class="breadcrumb-item">Hệ thống</li>
-                    <li class="breadcrumb-item active">Nhóm người dùng</li>
+                    <li class="breadcrumb-item active">Danh sách quyền</li>
                 </ol>
             </div>
         </div>
@@ -28,8 +28,8 @@
                     </div>
                 </div>
                 <div class="col-md-6">
+                    <button class="btn btn-success fa-pull-right" ui-sref="add_application_role">Thêm mới</button>
                     <button class="btn btn-danger fa-pull-right" ng-click="deleteMultiple()" id="btnDelete" disabled>Xóa</button>
-                    <button class="btn btn-success fa-pull-right" ui-sref="add_application_group">Thêm mới</button>
                 </div>
             </div>
             <div class="row">
@@ -37,9 +37,9 @@
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <td><input name="all" type="checkbox" ng-click="selectAll()" /></td>
-                                <th style="width: 5%">ID</th>
-                                <th style="width:55%">Tên nhóm</th>
+                                <td>
+                                    <input name="all" type="checkbox" ng-click="selectAll()" />
+                                <th style="width:55%">Tên quyền</th>
                                 <th style="width: 20%">Mô tả</th>
                                 <th style="width: 10%">Thao tác</th>
                             </tr>
@@ -47,14 +47,13 @@
                         <tbody>
                             <tr ng-repeat="item in data">
                                 <td><input type="checkbox" ng-model="item.checked" name="all" /></td>
-                                <td>{{item.ID}}</td>
-                                <td><a ui-sref="edit_application_group({id:item.ID})">{{item.Name}}</a></td>
+                                <td><a ui-sref="edit_application_role({id:item.Id})">{{item.Name}}</a></td>
                                 <td>
                                     {{item.Description}}
                                 </td>
                                 <td>
-                                    <button class="btn btn-sm btn-primary" ui-sref="edit_application_group({id:item.ID})"><i class="fa fa-pencil"></i></button>
-                                    <button class="btn  btn-sm btn-danger" ng-click="deleteItem(item.ID)"><i class="fa fa-trash"></i></button>
+                                    <button class="btn btn-sm btn-primary" ui-sref="edit_application_role({id:item.Id})"><i class="fa fa-pencil"></i></button>
+                                    <button class="btn  btn-sm btn-danger" ng-click="deleteItem(item.Id)"><i class="fa fa-trash"></i></button>
                                 </td>
                             </tr>
                         </tbody>

@@ -10,6 +10,7 @@
             'ui.bootstrap',
             'ngMaterial',
             'ngMessages',
-            'ngAria'
+            'ngAria',
+            'checklist-model'
         ])
 })();

@@ -93,6 +93,10 @@
     {
       "library": "jqueryui@1.13.2",
       "destination": "Assets/client/libs/jqueryui/"
+    },
+    {
+      "library": "checklist-model@1.0.0",
+      "destination": "Assets/admin/libs/checklist-model/"
     }
   ]
 }
